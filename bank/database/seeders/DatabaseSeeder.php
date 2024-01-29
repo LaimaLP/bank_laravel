@@ -53,5 +53,11 @@ $personalNumber = $firstDigit. $yearDigit. $monthDigit. $dayDigit. $lastFourDigi
             'email' => 'adam@gmail.com',
             'password' => Hash::make('123'),
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('123'),
+        ]);
     }
 }
