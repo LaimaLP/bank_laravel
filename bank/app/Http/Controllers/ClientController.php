@@ -44,7 +44,11 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        return view(
+            'clients.show',
+            [
+                'client' => $client,
+            ]);
     }
 
     /**
@@ -52,7 +56,12 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view(
+            'clients.edit',
+            [
+                'client' => $client,
+            ]
+        );
     }
 
     /**
@@ -60,14 +69,33 @@ class ClientController extends Controller
      */
     public function update(UpdateClientRequest $request, Client $client)
     {
-        //
+        $client->update($request->all());
+
+        return redirect()->route('clients-index');
     }
+
+    public function delete(Client $client) //cia po kapotu susiranda ta id, skart grazina ta mechaniko modeli kuri reikia
+    {
+
+        return view(
+            'clients.delete',
+            [
+                'client' => $client,
+            ]
+        );
+    }
+
+
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+
+        return redirect()->route('clients-index');
+
     }
 }

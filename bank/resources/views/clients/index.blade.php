@@ -11,7 +11,7 @@
                         <table class="table">
                             <tr>
                                 <th>Name</th>
-                                <th>Suraname</th>
+                                <th>Surname</th>
                                 <th>Personal code</th>
                                 <th>Account Number</th>
                                 <th>Action</th>
@@ -25,11 +25,11 @@
                                     <td>{{ $client->accountNumber }}</td>
                                     <td>
                                         <a class="btn btn-success m-1"
-                                            href={{ route('mechanics-edit', $client) }}>Add</a>
+                                            href={{ route('clients-edit', $client) }}>Edit</a>
                                         <a class="btn btn-danger m-1"
-                                            href={{ route('mechanics-delete', $client) }}>Withdraw</a>
+                                            href={{ route('clients-show', $client) }}>Show</a>
                                         <a class="btn btn-secondary m-1"
-                                            href={{ route('mechanics-show', $client) }}>Delete</a>
+                                            href={{ route('clients-delete', $client) }}>Delete</a>
                                     </td>
                                 </tr>
                             @empty
