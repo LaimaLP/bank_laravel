@@ -44,15 +44,15 @@ class DatabaseSeeder extends Seeder
                 'personalNumber' => $personalNumber,
             ]);
         }
-        foreach (range(1, 100) as $i) {
- 
+        foreach (range(1, 20) as $i) {
+
             $accountNumber = "LT" . rand(10 ** 17, 10 ** 18 - 1);
- 
+            $balance = rand(0, 1000000);
             DB::table('accounts')->insert([
                 'accountNumber' => $accountNumber,
                 'client_id' => $faker->numberBetween(1, 20),
+                'balance' => $balance,
             ]);
- 
         }
 
 

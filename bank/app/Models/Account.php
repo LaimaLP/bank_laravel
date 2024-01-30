@@ -12,6 +12,7 @@ class Account extends Model
     protected $fillable = [
         'accountNumber',
         'client_id',
+        'balance',
     ];
 
 

@@ -14,7 +14,10 @@ class AccountController extends Controller
      */
     public function index()
     {
-        //
+        $accounts = Account::all();
+        return view('client.index', [
+         'accounts' => $accounts,
+     ]);
     }
 
     /**
@@ -24,10 +27,12 @@ class AccountController extends Controller
     {
         $accountNumber = "LT" . rand(10 ** 17, 10 ** 18 - 1);
         $clients = Client::all();
+        $balance = 0;
 //cia yra kad accountss folderyje create blade rodo
         return view('accounts.create', [
             'clients' => $clients,
             'accountNumber'=>$accountNumber,
+            'balance' => 0,
         ]);
     }
 
@@ -46,7 +51,11 @@ class AccountController extends Controller
      */
     public function show(Account $account)
     {
-        //
+        return view(
+            'accounts.show',
+            [
+                'account' => $account,
+            ]);
     }
 
     /**
@@ -54,7 +63,12 @@ class AccountController extends Controller
      */
     public function edit(Account $account)
     {
-        //
+        $clients = Client::all();
+
+        return view('account.edit', [
+            'account' =>$account,
+            'clients' => $clients,
+        ]);
     }
 
     /**
@@ -62,14 +76,27 @@ class AccountController extends Controller
      */
     public function update(UpdateAccountRequest $request, Account $account)
     {
-        //
+        $account->update($request->all());
+
+        return redirect()->route('clients-index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
+    public function delete(Account $account)
+    {
+        return view(
+            'accounts.delete',
+            [
+                'account' => $account,
+            ]
+        );
+    }
     public function destroy(Account $account)
     {
-        //
+        $account->delete();
+
+        return redirect()->route('clients-index');
     }
 }

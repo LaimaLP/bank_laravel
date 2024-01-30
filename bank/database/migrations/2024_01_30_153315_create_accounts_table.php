@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('accountNumber', 64);
             $table->unsignedBigInteger('client_id')->nullable(); //reikalingas apjungiant lenteles, per ID susiejam. Rysi daro mechanic_id stulpelis su references id mechaniku lenteleje.
             $table->foreign('client_id')->references('id')->on('clients'); //rysio aprasas
+            $table->bigInteger('balance');
             $table->timestamps();
 
         });
