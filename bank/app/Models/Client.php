@@ -22,4 +22,11 @@ class Client extends Model
             $query->where('name', 'like', '%' . request('search') . '%')->orWhere('surname', 'like', '%' . request('search') . '%')->orWhere('personalNumber', 'like', '%' . request('search') . '%');
         }
     }
+
+    public function accounts()
+    {
+        return $this->hasMany(Account::class);
+    }
+
+
 }

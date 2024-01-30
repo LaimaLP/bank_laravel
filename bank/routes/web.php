@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MemberController as Member;
+use App\Http\Controllers\AccountController as Account;
 use App\Http\Controllers\ClientController as Client;
 use App\Http\Controllers\ListingSearchController;
 use App\Models\ListingSearch;
@@ -34,9 +34,18 @@ Route::prefix('clients')->name('clients-')->group(function () {
     Route::delete('/{client}', [CLient::class, 'destroy'])->name('destroy');
     
 });
-// Route::get('/clients', [ListingSearchController::class, 'index']);
-// Route::get('/clients/{listingSearch}', [ListingSearchController::class, 'show'])->search;
 
+Route::prefix('accounts')->name('accounts-')->group(function () {
+    Route::get('/', [Account::class, 'index'])->name('index'); //rodysim sarasa
+    Route::get('/create', [Account::class, 'create'])->name('create'); //creato forma
+    Route::post('/', [Account::class, 'store'])->name('store'); //uzsaugojimas
+    Route::get('/{account}', [Account::class, 'show'])->name('show'); //konkretus mechanikas
+    Route::get('/{account}/edit', [Account::class, 'edit'])->name('edit'); // jo redagavimo forma
+    Route::put('/{account}', [Account::class, 'update'])->name('update'); //redaguosim
+    Route::get('/{account}/delete', [Account::class, 'delete'])->name('delete');  //deleto confirmacija
+    Route::delete('/{account}', [Account::class, 'destroy'])->name('destroy');
+    
+});
 
 
 

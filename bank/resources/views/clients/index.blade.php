@@ -40,7 +40,52 @@
                                     <td>{{ $client->name }}</td>
                                     <td>{{ $client->surname }}</td>
                                     <td>{{ $client->personalNumber }}</td>
-                                    <td>{{ $client->accountNumber }}</td>
+                                    <td>
+                                        
+                                        
+                                        <div class="card-body">
+
+                                            {{-- cia duoda kolekcija su visai truckais. o jei uzdesime (), pasiimam priklausomybe ir joje paskaiciuoti. Duomenu bazes uzklausos countas ...  --}}
+                                            @if ($client->accounts()->count() > 0)
+
+                    
+                                                <ul class="list-group list-group-flush">
+                    
+                                                    @foreach ($client->accounts as $account)
+                    
+                                                    <li class="list-group-item"> <a href="{{route('trucks-show', truck)}}> {{ $truck->brand }} {{ $truck->plate }} </a> </li>
+                    
+                                                    @endforeach
+                    
+                                                </ul>
+                    
+                                                <a href="{{ route('mechanics-index') }}" class="btn btn-secondary m-2">Atšaukti</a>
+                    
+                                            @else
+                    
+                                                <form action="{{ route('mechanics-destroy', $mechanic) }}" method="post">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        
+                                        
+                                        {{ $client->accountNumber }}
+                                    
+                                    
+                                    
+                                    </td>
                                     <td>
                                         <a class="btn btn-success m-1" href={{ route('clients-edit', $client) }}>Edit</a>
                                         <a class="btn btn-danger m-1" href={{ route('clients-show', $client) }}>Show</a>
