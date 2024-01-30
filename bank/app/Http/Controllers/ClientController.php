@@ -14,11 +14,21 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::all();
-
         return view('clients.index', [
             'clients' => $clients,
         ]);
+
     }
+
+    public function filter()
+    {
+        return view('clients.index', [
+            
+            'clients' => Client::filter(request(['search']))->get()]);
+    }
+
+
+
 
     /**
      * Show the form for creating a new resource.

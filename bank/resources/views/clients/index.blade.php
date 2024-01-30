@@ -1,9 +1,27 @@
 @extends('layouts.app')
 
+
 @section('content')
+
+
+
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
+                <div class="col-md-7">
+                    <form action="http://localhost/bank_laravel/bank/public/clients/">
+                        <div style="display: flex; flex-direction:row; gap:5px">
+                            <input type="text" name="search" class="form-control" placeholder="Search FutureBank..." />
+                            <div class="absolute top-2 right-2">
+                                <button type="submit" class="btn btn-secondary"> 
+                                    <i class="fa fa-search"></i> 
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
                 <div class="card mt-5">
                     <h3 class="card-header">All clients</h3>
 
@@ -24,10 +42,8 @@
                                     <td>{{ $client->personalNumber }}</td>
                                     <td>{{ $client->accountNumber }}</td>
                                     <td>
-                                        <a class="btn btn-success m-1"
-                                            href={{ route('clients-edit', $client) }}>Edit</a>
-                                        <a class="btn btn-danger m-1"
-                                            href={{ route('clients-show', $client) }}>Show</a>
+                                        <a class="btn btn-success m-1" href={{ route('clients-edit', $client) }}>Edit</a>
+                                        <a class="btn btn-danger m-1" href={{ route('clients-show', $client) }}>Show</a>
                                         <a class="btn btn-secondary m-1"
                                             href={{ route('clients-delete', $client) }}>Delete</a>
                                     </td>
