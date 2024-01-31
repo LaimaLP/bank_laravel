@@ -15,5 +15,9 @@ class Account extends Model
         'balance',
     ];
 
+    public function client()
+    {
+        return $this->belongsTo(Client::class); //nurodom kad butent sis mechanikas
+    }
 
 }
