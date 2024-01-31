@@ -51,7 +51,12 @@
                             <a class="dropdown-item" href="{{route('clients-create')}}">
                                 New client
                             </a>
-
+                            <a class="dropdown-item" href="{{route('accounts-create')}}">
+                                New account
+                            </a>
+                            <a class="dropdown-item" href="{{--{{route('accounts{account}-edit')}}--}}">
+                                Transfer
+                            </a>
 
                         </div>
                     </li>

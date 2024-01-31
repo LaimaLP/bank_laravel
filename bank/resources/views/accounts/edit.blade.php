@@ -5,31 +5,55 @@
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <div class="card mt-5">
-                    <h3 class="card-header">Add money</h3>
+                    <h3 class="card-header">
+                        @if ($action === 'add')
+                            Add money
+                        @elseif ($action === 'withdraw')
+                            Withdraw money
+                        @endif
+                    </h3>
 
                     <div class="card-body">
-                        <form action="{{ route('clients-update', $client) }}" method="post">
+
+                        <form action="{{-- {{ route('clients-update', $account->client) }} --}}" method="post">
                             <div class="form-group mb-3">
-                                <label>Name</label>
-                                <input type="text" name="name" class="form-control" value="{{$client->name}}">
-                                <small class="form-text text-muted">Client Name</small>
+                                <label>Client</label>
+                                <input type="text" name="name" class="form-control"
+                                    value="{{ $account->client->name }} {{ $account->client->surname }}">
+                            </div>
+
+
+
+                            <div class="form-group mb-3">
+                                <label>Account Number</label>
+                                <input type="text" name="surname" class="form-control"
+                                    value="{{ $account->accountNumber }}" readonly>
                             </div>
                             <div class="form-group mb-3">
-                                <label>Surname</label>
-                                <input type="text" name="surname" class="form-control" value="{{$client->surname}}">
-                                <small class="form-text text-muted">Client surname</small>
+                                <label>Amount €</label>
+                                <input type="number" name="addMoney" class="form-control" placeholder="€">
                             </div>
-                            <div class="form-group mb-3">
-                                <label>Personal Code</label>
-                                <input type="text" name="surname" class="form-control" value="{{$client->accountNumber}}" readonly>
-                                <small class="form-text text-muted">Read Only</small>
-                            </div>
-                            <button type="submit" class="btn btn-primary m-">Save</button>
+
+                         
+                                @if ($action === 'add')
+                                <button type="submit" class="btn btn-primary m-">Add Money</button> 
+                                @elseif ($action === 'withdraw')
+                                <button type="submit" class="btn btn-primary m-">Withdraw Money</button> 
+                                @endif
+                          
+
+
+                           
+
+
+
+
                             <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1">Cancel</a>
-                            @csrf 
+                            @csrf
                             @method('put')
                             {{-- jei sito neuzrasome forma siuncia i 419 --}}
                         </form>
+
                     </div>
                 </div>
             </div>

@@ -22,11 +22,9 @@
 
 
                      
-                            <div class="form-group mb-3">
-                                <input type="text" name="personalNumber" class="form-control">
-                                <small class="form-text text-muted">Add money</small>
-                            </div>
-                            <button href="{{ route('accounts-index') }}" class="btn btn-secondary m-1">Add money</button>
+                           
+                            <a href="{{ route('accounts-edit', ['account' => $account, 'action' => 'add']) }}" class="btn btn-success m-1" >Add money</a>
+                            <a href="{{ route('accounts-edit',  ['account' => $account, 'action' => 'withdraw']) }}" class="btn btn-danger m-1">Withdraw money</a>
                             <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1">Back</a>
                         </div>
                     {{-- </form> --}}

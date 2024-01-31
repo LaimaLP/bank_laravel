@@ -41,6 +41,9 @@ Route::prefix('accounts')->name('accounts-')->group(function () {
     Route::post('/', [Account::class, 'store'])->name('store'); //uzsaugojimas
     Route::get('/{account}', [Account::class, 'show'])->name('show'); //konkretus mechanikas
     Route::get('/{account}/edit', [Account::class, 'edit'])->name('edit'); // jo redagavimo forma
+
+    Route::get('/{account}/transfer', [Account::class, 'edit'])->name('transfer'); // jo redagavimo forma
+
     Route::put('/{account}', [Account::class, 'update'])->name('update'); //redaguosim
     Route::get('/{account}/delete', [Account::class, 'delete'])->name('delete');  //deleto confirmacija
     Route::delete('/{account}', [Account::class, 'destroy'])->name('destroy');

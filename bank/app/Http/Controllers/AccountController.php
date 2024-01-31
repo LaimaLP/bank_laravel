@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Account;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreAccountRequest;
 use App\Http\Requests\UpdateAccountRequest;
 
@@ -61,16 +62,30 @@ class AccountController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Account $account)
+    public function edit(Request $request, Account $account)
     {
+        $action = $request->input('action');
+        $accounts = Account::all();
         $clients = Client::all();
 
-        return view('account.edit', [
-            'account' =>$account,
+        return view('accounts.transfer', [
+            'accounts' =>$accounts,
             'clients' => $clients,
+            'action' => $action,
         ]);
     }
+    public function transfer(Request $request, Account $account)
+    {
+        $action = $request->input('action');
+        $accounts = Account::all();
+        $clients = Client::all();
 
+        return view('accounts.transfer', [
+            'accounts' =>$accounts,
+            'clients' => $clients,
+            'action' => $action,
+        ]);
+    }
     /**
      * Update the specified resource in storage.
      */
