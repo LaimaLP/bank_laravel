@@ -19,7 +19,9 @@ class Client extends Model
     public function scopeFilter($query, array $filters)
     {
         if ($filters['search'] ?? false) {
-            $query->where('name', 'like', '%' . request('search') . '%')->orWhere('surname', 'like', '%' . request('search') . '%')->orWhere('personalNumber', 'like', '%' . request('search') . '%');
+            $query->where('name', 'like', '%' . request('search') . '%')
+            ->orWhere('surname', 'like', '%' . request('search') . '%')
+            ->orWhere('personalNumber', 'like', '%' . request('search') . '%');
         }
     }
 
