@@ -15,15 +15,29 @@ class Client extends Model
         'personalNumber',
     ];
 
+    protected static $sorts = [
+        'noSort' => 'Default',
+        'name_asc' => 'Surname (A-Z)',
+        'name_desc' => 'Surname(Z-A)',
+    ];
 
-    public function scopeFilter($query, array $filters)
+    protected static $perPageSelect = [
+        0 => 'All',
+        3 => 3,
+        7 => 7,
+        11 => 11,
+        13 => 13,
+        29 => 29,
+    ];
+
+    public static function getSorts()
     {
-        if ($filters['search'] ?? false) {
-            $query->where('name', 'like', '%' . request('search') . '%')
-            ->orWhere('surname', 'like', '%' . request('search') . '%')
-            ->orWhere('personalNumber', 'like', '%' . request('search') . '%');
-        }
+        return self::$sorts;
     }
+    public static function getPerPageSelect(){
+        return self::$perPageSelect;
+    }
+ 
 
     public function accounts()
     {
