@@ -20,9 +20,11 @@ class UpdateClientRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
-        return [
-            //
+    { 
+        return [   // kad butina/jis stringas/min reiksmes/kiek max
+            'name' => 'required|string|min:3|max:64|alpha:ascii',
+            'surname'=>'required|string|min:3|max:64|alpha:ascii',
+            'personalNumber'=>'required|regex:/^\d{11}$/',
         ];
     }
 }
