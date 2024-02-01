@@ -23,16 +23,15 @@ Route::get('/', function () {
 
 
 Route::prefix('clients')->name('clients-')->group(function () {
-    Route::get('/', [CLient::class, 'index'])->name('index'); //rodysim sarasa
-    Route::get('/', [CLient::class, 'filter'])->name('index'); //rodysim sarasa
-    Route::get('/create', [CLient::class, 'create'])->name('create'); //creato forma
-    Route::post('/', [CLient::class, 'store'])->name('store'); //uzsaugojimas
-    Route::get('/{client}', [CLient::class, 'show'])->name('show'); //konkretus mechanikas
-    Route::get('/{client}/edit', [CLient::class, 'edit'])->name('edit'); // jo redagavimo forma
-    Route::put('/{client}', [CLient::class, 'update'])->name('update'); //redaguosim
-    Route::get('/{client}/delete', [CLient::class, 'delete'])->name('delete');  //deleto confirmacija
-    Route::delete('/{client}', [CLient::class, 'destroy'])->name('destroy');
-    
+    Route::get('/', [Client::class, 'index'])->name('index'); //rodysim sarasa
+    // Route::get('/filter', [Client::class, 'filter'])->name('filter'); //rodysim sarasa
+    Route::get('/create', [Client::class, 'create'])->name('create'); //creato forma
+    Route::post('/', [Client::class, 'store'])->name('store'); //uzsaugojimas
+    Route::get('/{client}', [Client::class, 'show'])->name('show'); //konkretus mechanikas
+    Route::get('/{client}/edit', [Client::class, 'edit'])->name('edit'); // jo redagavimo forma
+    Route::put('/{client}', [Client::class, 'update'])->name('update'); //redaguosim
+    Route::get('/{client}/delete', [Client::class, 'delete'])->name('delete');  //deleto confirmacija
+    Route::delete('/{client}', [Client::class, 'destroy'])->name('destroy');
 });
 
 Route::prefix('accounts')->name('accounts-')->group(function () {
@@ -42,7 +41,7 @@ Route::prefix('accounts')->name('accounts-')->group(function () {
     Route::get('/{account}', [Account::class, 'show'])->name('show'); //konkretus mechanikas
     Route::get('/{account}/edit', [Account::class, 'edit'])->name('edit'); // jo redagavimo forma
 
-    Route::get('/{account}/transfer', [Account::class, 'edit'])->name('transfer'); // jo redagavimo forma
+    Route::get('/transfer', [Account::class, 'transfer'])->name('transfer'); // jo redagavimo forma
 
     Route::put('/{account}', [Account::class, 'update'])->name('update'); //redaguosim
     Route::get('/{account}/delete', [Account::class, 'delete'])->name('delete');  //deleto confirmacija

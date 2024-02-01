@@ -13,7 +13,7 @@
                             {{-- cia duoda kolekcija su visai truckais. o jei uzdesime (), pasiimam priklausomybe ir joje paskaiciuoti. Duomenu bazes uzklausos countas ...  --}}
                             <ul class="list-group list-group-flush">
                                 @foreach ($client->accounts as $account)
-                                <li class="list-group-item">{{ $account->accountNumber }} : <b>{{ $account->balance }} € </b></li>
+                                <a class="list-group-item" href={{ route('accounts-show', $account) }} >{{ $account->accountNumber }} : <b>{{ $account->balance }} € </b></a>
                                 @endforeach
                             </ul>
                             <ul class="list-group-item"> Total balance in {{$client->name}} {{$client->surname}} accounts:  </ul>

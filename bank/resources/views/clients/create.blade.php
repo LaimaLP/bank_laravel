@@ -11,17 +11,17 @@
                         <form action="{{ route('clients-store') }}" method="post">
                             <div class="form-group mb-3">
                                 <label>Name</label>
-                                <input type="text" name="name" class="form-control">
+                                <input type="text" name="name" class="form-control" value="{{old('name')}}">
                                 <small class="form-text text-muted">Add client name</small>
                             </div>
                             <div class="form-group mb-3">
                                 <label>Surname</label>
-                                <input type="text" name="surname" class="form-control">
+                                <input type="text" name="surname" class="form-control" value="{{old('surname')}}">
                                 <small class="form-text text-muted">Add client surname</small>
                             </div>
                             <div class="form-group mb-3">
                                 <label>Personal Number</label>
-                                <input type="text" name="personalNumber" class="form-control">
+                                <input type="text" name="personalNumber" class="form-control" value="{{old('personalNumber')}}">
                                 <small class="form-text text-muted">Add client personal number</small>
                             </div>
                             <button type="submit" class="btn btn-primary">Add new client</button>

@@ -11,17 +11,17 @@
                         <form action="{{ route('clients-update', $client) }}" method="post">
                             <div class="form-group mb-3">
                                 <label>Name</label>
-                                <input type="text" name="name" class="form-control" value="{{$client->name}}">
+                                <input type="text" name="name" class="form-control" value="{{old('name', $client->name)}}">
                                 <small class="form-text text-muted">Add new name</small>
                             </div>
                             <div class="form-group mb-3">
                                 <label>Surname</label>
-                                <input type="text" name="surname" class="form-control" value="{{$client->surname}}">
+                                <input type="text" name="surname" class="form-control" value="{{old('surname', $client->surname)}}">
                                 <small class="form-text text-muted">Add new surname</small>
                             </div>
                             <div class="form-group mb-3">
                                 <label>Personal Code</label>
-                                <input type="text" name="surname" class="form-control" value="{{$client->personalNumber}}" readonly>
+                                <input type="text" name="surname" class="form-control" value="{{old('personalNumber', $client->personalNumber)}}" readonly>
                                 <small class="form-text text-muted">Read Only</small>
                             </div>
                             <button type="submit" class="btn btn-primary m-">Save</button>

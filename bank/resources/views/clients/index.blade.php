@@ -9,8 +9,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="col-md-7">
-                    <form action="http://localhost/bank_laravel/bank/public/clients/">
+                {{-- <div class="col-md-7">
+                    <form action="{{route('clients-filter')}}">
                         <div style="display: flex; flex-direction:row; gap:5px">
                             <input type="text" name="search" class="form-control" placeholder="Search FutureBank..." />
                             <div class="absolute top-2 right-2">
@@ -20,10 +20,58 @@
                             </div>
                         </div>
                     </form>
-                </div>
+                </div> --}}
 
                 <div class="card mt-5">
                     <h3 class="card-header">All clients</h3>
+
+
+                    <form action="{{route('clients-index')}}">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="form-group mb-3">
+                                        <label class="m-2">Sort by</label>
+                                        <select class="form-select mt-2" name="sort">
+                                            @foreach ($sorts as $sortKey => $sortValue)
+                                                <option value="{{ $sortKey }}"
+                                                    @if ($sortBy == $sortKey) selected @endif>
+                                                    {{ $sortValue }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-3 ">
+                                    <div class="form-group mb-2">
+                                        <label class="m-2">Puslapyje rezultatų</label>
+                                        <select class="form-select mt-2" name="per_page">
+                                            @foreach ($perPageSelect as $perPageKey => $perPageValue)
+                                                <option value="{{ $perPageKey }}"
+                                                    @if ($perPage == $perPageKey) selected @endif>
+                                                    {{ $perPageValue }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-3 mt-2">
+                                    <div class="form-group mb-2">
+                                        <label class="m-2">Search by</label>
+                                        <input type="text" name="s" class="form-control" placeholder="Name, surname" />
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary mt-5">Sort</button>
+                                        <a href="{{ route('clients-index') }}"
+                                            class="btn btn-secondary mt-5 ms-2">Default</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+
 
                     <div class="card-body">
                         <table class="table">
@@ -89,6 +137,16 @@
                         </div>
                     </div>
                 </div>
+
+                @if ($perPage)
+                <div class="mt-3">
+                    {{ $clients->links() }}
+                </div>
+            @endif
+
+
+
+
             </div>
         </div>
     </div>

@@ -33,7 +33,7 @@ class AccountController extends Controller
         return view('accounts.create', [
             'clients' => $clients,
             'accountNumber'=>$accountNumber,
-            'balance' => 0,
+            'balance' => $balance,
         ]);
     }
 
@@ -65,30 +65,26 @@ class AccountController extends Controller
     public function edit(Request $request, Account $account)
     {
         $action = $request->input('action');
-        $accounts = Account::all();
         $clients = Client::all();
 
-        return view('accounts.transfer', [
-            'accounts' =>$accounts,
+        return view('accounts.edit', [
+            'account' =>$account,
             'clients' => $clients,
             'action' => $action,
         ]);
     }
-    public function transfer(Request $request, Account $account)
+    public function transfer()
     {
-        $action = $request->input('action');
+      
         $accounts = Account::all();
         $clients = Client::all();
 
         return view('accounts.transfer', [
             'accounts' =>$accounts,
             'clients' => $clients,
-            'action' => $action,
         ]);
     }
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(UpdateAccountRequest $request, Account $account)
     {
         $account->update($request->all());

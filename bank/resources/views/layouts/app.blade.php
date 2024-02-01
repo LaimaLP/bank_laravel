@@ -54,7 +54,7 @@
                             <a class="dropdown-item" href="{{route('accounts-create')}}">
                                 New account
                             </a>
-                            <a class="dropdown-item" href="{{--{{route('accounts{account}-edit')}}--}}">
+                            <a class="dropdown-item" href="{{route('accounts-transfer')}}">
                                 Transfer
                             </a>
 
@@ -107,6 +107,9 @@
         </nav>
 
         <main class="py-4">
+            @include('layouts.errors')
+            @include('layouts.ok')
+            @include('layouts.info')
             @yield('content')
         </main>
     </div>
