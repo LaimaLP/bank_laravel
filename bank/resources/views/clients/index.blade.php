@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="col-3 ">
                                     <div class="form-group mb-2">
-                                        <label class="m-2">Puslapyje rezultatų</label>
+                                        <label class="m-2">Client's per page</label>
                                         <select class="form-select mt-2" name="per_page">
                                             @foreach ($perPageSelect as $perPageKey => $perPageValue)
                                                 <option value="{{ $perPageKey }}"
