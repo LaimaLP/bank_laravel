@@ -14,8 +14,8 @@
                     </h3>
 
                     <div class="card-body">
+                        <form action="{{ route('accounts-update', [$account, 'action' => $action]) }}" method="post">
 
-                        <form action="{{-- {{ route('clients-update', $account->client) }} --}}" method="post">
                             <div class="form-group mb-3">
                                 <label>Client</label>
                                 <input type="text" name="name" class="form-control"
@@ -30,8 +30,13 @@
                                     value="{{ $account->accountNumber }}" readonly>
                             </div>
                             <div class="form-group mb-3">
+                                <label>Account Balance</label>
+                                <input type="text" name="balance" class="form-control"
+                                    value="{{ $account->balance }}" readonly>
+                            </div>
+                            <div class="form-group mb-3">
                                 <label>Amount €</label>
-                                <input type="number" name="addMoney" class="form-control" placeholder="€">
+                                <input type="number" name="amount" class="form-control" placeholder="€">
                             </div>
 
                          

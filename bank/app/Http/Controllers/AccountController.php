@@ -65,6 +65,7 @@ class AccountController extends Controller
     public function edit(Request $request, Account $account)
     {
         $action = $request->input('action');
+    
         $clients = Client::all();
 
         return view('accounts.edit', [
@@ -77,6 +78,7 @@ class AccountController extends Controller
     {
       
         $accounts = Account::all();
+        // dd($accounts);
         $clients = Client::all();
 
         return view('accounts.transfer', [
@@ -87,7 +89,20 @@ class AccountController extends Controller
 
     public function update(UpdateAccountRequest $request, Account $account)
     {
-        $account->update($request->all());
+      
+        $addMoney = (int)$request->input('amount');
+        $action = $request->input('action');
+        
+       if($action === "add"){
+        $account->balance += $addMoney;
+       }else if($action === "withdraw"){
+        $account->balance -= $addMoney;
+       }
+      
+        $account->save();
+
+
+
 
         return redirect()->route('clients-index');
     }
