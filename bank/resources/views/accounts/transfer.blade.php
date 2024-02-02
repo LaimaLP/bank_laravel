@@ -18,7 +18,6 @@
                                     <option value="{{--{{$client->id}}--}}">{{$account->client->name}} {{$account->client->surname}} | {{$account->accountNumber}} | {{$account->balance}} € </option>
                                     @endforeach
                                 </select>
-                                <small class="form-text text-muted">Choose client for account</small>
                             </div>
 
 
@@ -35,10 +34,11 @@
 
                                     @endforeach
                                 </select>
-                                <small class="form-text text-muted">Choose client for account</small>
                             </div>
-
-
+                            <label>Add amount, €</label>
+                            <input type="number" name="addMoney" class="form-control" placeholder="€">
+                        </div>
+                        
 
 
 
