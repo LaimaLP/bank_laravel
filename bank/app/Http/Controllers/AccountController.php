@@ -17,8 +17,8 @@ class AccountController extends Controller
     {
         $accounts = Account::all();
         return view('client.index', [
-         'accounts' => $accounts,
-     ]);
+            'accounts' => $accounts,
+        ]);
     }
 
     /**
@@ -29,10 +29,10 @@ class AccountController extends Controller
         $accountNumber = "LT" . rand(10 ** 17, 10 ** 18 - 1);
         $clients = Client::all();
         $balance = 0;
-//cia yra kad accountss folderyje create blade rodo
+        //cia yra kad accountss folderyje create blade rodo
         return view('accounts.create', [
             'clients' => $clients,
-            'accountNumber'=>$accountNumber,
+            'accountNumber' => $accountNumber,
             'balance' => $balance,
         ]);
     }
@@ -56,7 +56,8 @@ class AccountController extends Controller
             'accounts.show',
             [
                 'account' => $account,
-            ]);
+            ]
+        );
     }
 
     /**
@@ -65,40 +66,59 @@ class AccountController extends Controller
     public function edit(Request $request, Account $account)
     {
         $action = $request->input('action');
-    
-        $clients = Client::all();
 
         return view('accounts.edit', [
-            'account' =>$account,
-            'clients' => $clients,
+            'account' => $account,
             'action' => $action,
         ]);
     }
     public function transfer()
     {
-      
+
         $accounts = Account::all();
-        // dd($accounts);
         $clients = Client::all();
+        $action = "transfer";
 
         return view('accounts.transfer', [
-            'accounts' =>$accounts,
+            'accounts' => $accounts,
             'clients' => $clients,
+            'action' => $action,
         ]);
     }
 
+
+    public function transferUpdate(UpdateAccountRequest $request)
+    {
+        $accountIdFrom = (int)$request->input('account_id_from');
+        $accountIdTo = (int)$request->input('account_id_to');
+        $amount = (int)$request->input('amount');
+
+        $accountFrom = Account::find($accountIdFrom);
+        $accountTo = Account::find($accountIdTo);
+        // dump($accountFrom);
+        // dd($accountTo);
+
+        $accountFrom->balance -= $amount;
+        $accountTo->balance += $amount;
+
+        $accountFrom->save();
+        $accountTo->save();
+
+        return redirect()->route('clients-index');
+    }
+
+
     public function update(UpdateAccountRequest $request, Account $account)
     {
-      
-        $addMoney = (int)$request->input('amount');
-        $action = $request->input('action');
-        
-       if($action === "add"){
-        $account->balance += $addMoney;
-       }else if($action === "withdraw"){
-        $account->balance -= $addMoney;
-       }
-      
+        $amount = (int)$request->input('amount');
+        $action = $request->query('action');
+
+        if ($action === "add") {
+            $account->balance += $amount;
+        } else if ($action === "withdraw") {
+            $account->balance -= $amount;
+        }
+
         $account->save();
 
 
@@ -106,6 +126,8 @@ class AccountController extends Controller
 
         return redirect()->route('clients-index');
     }
+
+
 
     /**
      * Remove the specified resource from storage.

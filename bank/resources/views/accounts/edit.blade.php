@@ -22,8 +22,6 @@
                                     value="{{ $account->client->name }} {{ $account->client->surname }}">
                             </div>
 
-
-
                             <div class="form-group mb-3">
                                 <label>Account Number</label>
                                 <input type="text" name="surname" class="form-control"
@@ -31,24 +29,24 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label>Account Balance</label>
-                                <input type="text" name="balance" class="form-control"
-                                    value="{{ $account->balance }}" readonly>
+                                <input type="text" name="balance" class="form-control" value="{{ $account->balance }}"
+                                    readonly>
                             </div>
                             <div class="form-group mb-3">
                                 <label>Amount €</label>
                                 <input type="number" name="amount" class="form-control" placeholder="€">
                             </div>
 
-                         
-                                @if ($action === 'add')
-                                <button type="submit" class="btn btn-primary m-">Add Money</button> 
-                                @elseif ($action === 'withdraw')
-                                <button type="submit" class="btn btn-primary m-">Withdraw Money</button> 
-                                @endif
-                          
+
+                            @if ($action === 'add')
+                                <button type="submit" class="btn btn-primary m-">Add Money</button>
+                            @elseif ($action === 'withdraw')
+                                <button type="submit" class="btn btn-primary m-">Withdraw Money</button>
+                            @endif
 
 
-                           
+
+
 
 
 

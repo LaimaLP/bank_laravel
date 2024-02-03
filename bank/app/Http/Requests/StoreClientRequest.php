@@ -24,9 +24,9 @@ class StoreClientRequest extends FormRequest
     public function rules(): array
     { 
         return [   // kad butina/jis stringas/min reiksmes/kiek max
-            'name' => 'required|string|min:3|max:64|alpha:ascii',
-            'surname'=>'required|string|min:3|max:64|alpha:ascii',
-            'personalNumber'=>'required|regex:/^\d{11}$/',
+            // 'name' => 'required|string|min:3|max:64|alpha:ascii',
+            // 'surname'=>'required|string|min:3|max:64|alpha:ascii',
+            // 'personalNumber'=>'required|regex:/^\d{11}$/',
         ];
     }
 
