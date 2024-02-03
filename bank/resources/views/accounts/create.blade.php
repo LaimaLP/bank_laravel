@@ -8,11 +8,12 @@
                     <h3 class="card-header">Add account</h3>
 
                     <div class="card-body">
-                        <form action="{{ route('clients-store') }}" method="post">
+                        <form action="{{ route('accounts-store', ['balance'=> $balance]) }}" method="post">
+                            
 
                             <div class="form-group mb-3">
-                                <label>Account Number</label>
-                                <input type="text" name="personalNumber" class="form-control" value="{{$accountNumber}}" readonly>
+                                <label>New Account Number</label>
+                                <input type="text" name="accountNumber" class="form-control" value="{{$accountNumber}}" readonly>
                                 <small class="form-text text-muted">ReadOnly</small>
                             </div>
 

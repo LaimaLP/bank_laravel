@@ -24,11 +24,12 @@ class AccountController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $accountNumber = "LT" . rand(10 ** 17, 10 ** 18 - 1);
         $clients = Client::all();
         $balance = 0;
+
         //cia yra kad accountss folderyje create blade rodo
         return view('accounts.create', [
             'clients' => $clients,
@@ -42,6 +43,11 @@ class AccountController extends Controller
      */
     public function store(StoreAccountRequest $request)
     {
+        
+        // 'request' => 'balance' = 0;
+        // $request->query('balance', 0);
+        
+        // dd($request);
         Account::create($request->all()); //imam visus duomenis, nevaliduotus
         //po to keliaujam i mechanic index'a.
         return redirect()->route('clients-index');

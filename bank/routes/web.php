@@ -45,7 +45,7 @@ Route::prefix('accounts')->name('accounts-')->group(function () {
     Route::put('/{account}', [Account::class, 'update'])->name('update'); //redaguosim
 
     Route::post('/', [Account::class, 'store'])->name('store'); //uzsaugojimas
-    
+
     Route::delete('/{account}', [Account::class, 'destroy'])->name('destroy');
     
 });
