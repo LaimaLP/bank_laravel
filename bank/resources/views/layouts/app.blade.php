@@ -21,7 +21,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body style= "background-image: url(./img/bank3.avif);background-position: center center; background-size: cover;">
+<body style= "">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="opacity:0.7">
             <div class="container">
