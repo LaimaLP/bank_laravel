@@ -22,15 +22,15 @@
                     </form>
                 </div> --}}
 
-                <div class="card mt-5">
+                <div class="card mt-5 client-list" >
                     <h3 class="card-header">All clients</h3>
 
 
                     <form action="{{route('clients-index')}}">
-                        <div class="container">
+                        <div class="container ">
                             <div class="row">
-                                <div class="col-3">
-                                    <div class="form-group mb-3">
+                                <div class="col-3 ">
+                                    <div class="form-group mb-3 ">
                                         <label class="m-2">Sort by</label>
                                         <select class="form-select mt-2" name="sort">
                                             @foreach ($sorts as $sortKey => $sortValue)
@@ -73,10 +73,10 @@
 
 
 
-                    <div class="card-body">
-                        <table class="table">
+                    <div class="card-body p-4 ">
+                        <table class="table ">
                             <thead>
-                                <tr>
+                                <tr >
                                     <th>Name</th>
                                     <th>Surname</th>
                                     <th>Personal code</th>
@@ -85,7 +85,7 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                                 @forelse ($clients as $client)
                                 {{-- //forechinam kolekcija --}}
                                 <tr>
