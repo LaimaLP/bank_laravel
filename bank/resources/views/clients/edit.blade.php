@@ -21,14 +21,13 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label>Personal Code</label>
-                                <input type="text" name="surname" class="form-control" value="{{old('personalNumber', $client->personalNumber)}}" readonly>
+                                <input type="text" class="form-control" value="{{old('personalNumber', $client->personalNumber)}}" readonly>
                                 <small class="form-text text-muted">Read Only</small>
                             </div>
                             <button type="submit" class="btn btn-primary m-">Save</button>
                             <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1">Cancel</a>
                             @csrf 
                             @method('put')
-                            {{-- jei sito neuzrasome forma siuncia i 419 --}}
                         </form>
                     </div>
                 </div>
