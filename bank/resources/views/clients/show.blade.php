@@ -27,7 +27,7 @@
                
 
                         <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1">All clients</a>
-
+                        <a href="{{route('accounts-transfer')}}" class="btn btn-primary m-1"> Transfer </a>
 
                     </div>
                 </div>

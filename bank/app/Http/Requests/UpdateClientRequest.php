@@ -22,9 +22,8 @@ class UpdateClientRequest extends FormRequest
     public function rules(): array
     { 
         return [  
-            // 'name' => 'required|string|min:3|max:64|alpha:ascii',
-            // 'surname'=>'required|string|min:3|max:64|alpha:ascii',
-            // 'personalNumber'=>'required|regex:/^\d{11}$/',
+            'name' => 'required|string|min:3|max:64|alpha:ascii',
+            'surname'=>'required|string|min:3|max:64|alpha:ascii',
         ];
     }
 }

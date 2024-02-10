@@ -23,7 +23,7 @@
 </head>
 <body style= "">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="opacity:0.7">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="opacity:0.9">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <b> Future Bank </b>

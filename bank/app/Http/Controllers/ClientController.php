@@ -19,7 +19,7 @@ class ClientController extends Controller
         // dd($sorts);
         $sortBy = $request->query('sort', '');
         $perPageSelect = Client::getPerPageSelect();
-        $perPage = (int)$request->query('per_page', 0);
+        $perPage = (int)$request->query('per_page', 3);
         $s = $request->query('s', '');
 
         // $clients = Client::all();
