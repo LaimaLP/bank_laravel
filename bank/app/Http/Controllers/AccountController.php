@@ -33,12 +33,12 @@ class AccountController extends Controller
         ]);
     }
 
-   
+
     public function store(StoreAccountRequest $request)
     {
-        
-    
-        Account::create($request->all()); 
+
+
+        Account::create($request->all());
         return redirect()->route('clients-index');
     }
 
@@ -53,7 +53,7 @@ class AccountController extends Controller
         );
     }
 
-   
+
     public function edit(Request $request, Account $account)
     {
         $action = $request->input('action');
@@ -83,7 +83,7 @@ class AccountController extends Controller
         $accountIdFrom = (int)$request->input('account_id_from');
         $accountIdTo = (int)$request->input('account_id_to');
         $amount = (int)$request->input('amount');
-       
+
         $accountFrom = Account::find($accountIdFrom);
         $accountTo = Account::find($accountIdTo);
 
@@ -105,8 +105,18 @@ class AccountController extends Controller
         if ($action === "add") {
             $account->balance += $amount;
         } else if ($action === "withdraw") {
-            $account->balance -= $amount;
+
+
+            if ($account->balance > 0 && $account->balance > $amount) {
+                $account->balance -= $amount;
+            } elseif ($account->balance < 0) {
+                return redirect()->route('accounts-edit', ['account' => $account, 'action' => $action])->with('error', "Can't witdraw money from accounts with negative balance.");
+            } elseif ($account->balance < $amount) {
+                return redirect()->route('accounts-edit', ['account' => $account, 'action' => $action])->with('error', "Can't witdraw money. Max amount $account->balance .");
+            }
         }
+
+
 
         $account->save();
 
@@ -129,8 +139,13 @@ class AccountController extends Controller
     }
     public function destroy(Account $account)
     {
-        $account->delete();
 
+        if ($account->balance > 0) {
+            return redirect()->route('clients-delete')->with('ok', "Account can't be deleted. Balance {$account->balance}");
+        }
+
+
+        $account->delete();
         return redirect()->route('clients-index');
     }
 }
