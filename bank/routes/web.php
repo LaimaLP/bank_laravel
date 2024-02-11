@@ -24,7 +24,6 @@ Route::get('/', function () {
 
 Route::prefix('clients')->name('clients-')->group(function () {
     Route::get('/', [Client::class, 'index'])->name('index'); //rodysim sarasa
-    // Route::get('/filter', [Client::class, 'filter'])->name('filter'); //rodysim sarasa
     Route::get('/create', [Client::class, 'create'])->name('create'); //creato forma
     Route::post('/', [Client::class, 'store'])->name('store'); //uzsaugojimas
     Route::get('/{client}', [Client::class, 'show'])->name('show'); //konkretus mechanikas

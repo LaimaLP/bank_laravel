@@ -35,7 +35,13 @@ border: 2px solid rgba(232, 227, 227, 0.35);
 
 }
 .custom-account-list:hover{
-    background-color: rgba(83, 86, 85, 0.638);
+    background-color: rgba(118, 122, 121, 0.5);
     border-radius: 10px;
     color: white;
+    cursor: pointer;
+}
+
+.custom-account-list a{
+ text-decoration: none;
+ color: black;
 }
