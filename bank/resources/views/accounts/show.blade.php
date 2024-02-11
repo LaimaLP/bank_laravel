@@ -16,13 +16,14 @@
                         <div class="form-group mb-3">
                             <label>Account Balance</label>
                             <input type="text" name="surname" class="form-control"
-                                value="{{ $account->balance }} Eur "readonly>
+                                value="{{ $account->balance }} € "readonly>
                         </div>
+                        <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1">Back</a>
                         <a href="{{ route('accounts-edit', ['account' => $account, 'action' => 'add']) }}"
                             class="btn btn-success m-1">Add money</a>
                         <a href="{{ route('accounts-edit', ['account' => $account, 'action' => 'withdraw']) }}"
                             class="btn btn-danger m-1">Withdraw money</a>
-                        <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1">Back</a>
+                        <a href="{{ route('accounts-delete', $account) }}" class="btn btn-secondary m-1">Delete</a>
                     </div>
                     {{-- </form> --}}
                 </div>

@@ -23,7 +23,7 @@
                             </div> --}}
                             <h5 class="p-2"> Client name: <b>{{ $account->client->name }} {{ $account->client->surname }} </b></h5>
                             <h5 class="p-2"> Account number: <b>{{ $account->accountNumber }}</b></h5>
-                            <h5 class="p-2"> Account balance: <b>{{ $account->balance }}€</b></h5>
+                            <h5 class="p-2"> Account balance: <b>{{ $account->balance }} €</b></h5>
 {{-- 
                             <div class="form-group mb-3">
                                 <label>Account Number:</label>
