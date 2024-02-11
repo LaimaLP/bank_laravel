@@ -45,3 +45,8 @@ border: 2px solid rgba(232, 227, 227, 0.35);
  text-decoration: none;
  color: black;
 }
+.modal{
+    display: block;
+    background-color: #00000099;
+    z-index: 999;
+}

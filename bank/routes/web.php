@@ -40,6 +40,9 @@ Route::prefix('accounts')->name('accounts-')->group(function () {
     Route::get('/{account}/edit', [Account::class, 'edit'])->name('edit'); // jo redagavimo forma
     Route::get('/{account}/delete', [Account::class, 'delete'])->name('delete');  //deleto confirmacija
 
+    Route::get('/{account}/confirm', [Account::class, 'confirm'])->name('confirm');  
+
+    
     Route::put('/', [Account::class, 'transferUpdate'])->name('transferUp'); //redaguosim
     Route::put('/{account}', [Account::class, 'update'])->name('update'); //redaguosim
 

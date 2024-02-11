@@ -45,6 +45,8 @@ class AccountController extends Controller
 
     public function show(Account $account)
     {
+        
+        // dd($account->client->name);
         return view(
             'accounts.show',
             [
@@ -63,17 +65,24 @@ class AccountController extends Controller
             'action' => $action,
         ]);
     }
-    public function transfer()
+    public function transfer(UpdateAccountRequest $request)
     {
 
         $accounts = Account::all();
         $clients = Client::all();
         $action = "transfer";
+        // dd($request);
+        $account_id_from = (int) $request->query('account_id_from', '');
+        $account_id_to = (int) $request->query('account_id_to', '');
+        $confirmationNeeded = $request->query('confirmationNeeded', false);
 
         return view('accounts.transfer', [
             'accounts' => $accounts,
             'clients' => $clients,
             'action' => $action,
+            'account_id_from' => $account_id_from,
+            'account_id_to' =>  $account_id_to,
+            'confirmationNeeded'=>$confirmationNeeded,
         ]);
     }
 
@@ -82,17 +91,23 @@ class AccountController extends Controller
     {
         // dd($request);
 
-        $accountIdFrom = (int)$request->input('account_id_from');
-        $accountIdTo = (int)$request->input('account_id_to');
+        $account_id_from = (int)$request->input('account_id_from');
+        $account_id_to = (int)$request->input('account_id_to');
         $amount = (int)$request->input('amount');
-        $accountFrom = Account::find($accountIdFrom);
-        $accountTo = Account::find($accountIdTo);
-
+        $accountFrom = Account::find($account_id_from);
+        $accountTo = Account::find($account_id_to);
+        $accountsData = ['account_id_from' => $account_id_from, 'account_id_to' => $account_id_to];
 
         if ($accountFrom->balance < 0) {
-            return redirect()->route('accounts-transfer')->with('error', "Not enough balance. Balance already negative.");
+            return redirect()->route('accounts-transfer', $accountsData)->with('error', "Not enough balance. Balance already negative.");
         } elseif ($accountFrom->balance < $amount) {
-            return redirect()->route('accounts-transfer')->with('error', "Not enough balance. Max able transfer amount is $accountFrom->balance €.");
+            return redirect()->route('accounts-transfer',  $accountsData)->with('error', "Not enough balance. Max able transfer amount is $accountFrom->balance €.");
+        } elseif ($amount < 0) {
+            return redirect()->route('accounts-transfer',  $accountsData)->with('error', "Input must be positive integer.");
+        } elseif ($amount >= 1000) {
+            $accountsData = [...$accountsData, 'confirmationNeeded' => true,  'amount'=>$amount, 'accountFrom'=>$accountFrom, 'accountTo'=>$accountTo];
+            // dd($accountsData);
+            return redirect()->route('accounts-transfer', $accountsData);
         }
 
         $accountFrom->balance -= $amount;
