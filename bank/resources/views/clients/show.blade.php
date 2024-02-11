@@ -5,22 +5,24 @@
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <div class="card mt-5">
-                    <h3 class="card-header">Client {{$client->name}} {{$client->surname}}</h3>
+                    <h3 class="card-header">Client {{$client->name}} {{$client->surname}} data</h3>
 
                     <div class="card-body">
                         @if ($client->accounts()->count() > 0)
                         <div class="card-body">
+                            <ul>
+                            <li> Has <b>{{$client->accounts()->count()}}</b> active acounts.</li>
+                            <li> Total balance in <b>{{$client->surname}}</b> accounts is <b>{{$client->accounts()->sum('balance')}}€</b>. </li>
+       </ul>
+
                             <ul class="list-group list-group-flush">
                                 @foreach ($client->accounts as $account)
 
-                                <a class="list-group-item" href={{ route('accounts-show', $account) }} >{{ $account->accountNumber }} : <b>{{ $account->balance }} € </b></a>
-
-
-                                <p>  Total balance in {{$client->name}} {{$client->surname}} accounts: </p>
+                                <a class="list-group-item custom-account-list" href={{ route('accounts-show', $account) }} >{{ $account->accountNumber }} : <b>{{ $account->balance }} € </b></a>
                                 @endforeach
                             </ul>
                             <ul class="list-group-item">  
-                                {{$account->balance}}  </ul>
+                      </ul>
                         </div>
                         @endif
                     </td>
