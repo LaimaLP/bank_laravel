@@ -80,12 +80,20 @@ class AccountController extends Controller
 
     public function transferUpdate(UpdateAccountRequest $request)
     {
+        // dd($request);
+
         $accountIdFrom = (int)$request->input('account_id_from');
         $accountIdTo = (int)$request->input('account_id_to');
         $amount = (int)$request->input('amount');
-
         $accountFrom = Account::find($accountIdFrom);
         $accountTo = Account::find($accountIdTo);
+
+
+        if ($accountFrom->balance < 0) {
+            return redirect()->route('accounts-transfer')->with('error', "Not enough balance. Balance already negative.");
+        } elseif ($accountFrom->balance < $amount) {
+            return redirect()->route('accounts-transfer')->with('error', "Not enough balance. Max able transfer amount is $accountFrom->balance €.");
+        }
 
         $accountFrom->balance -= $amount;
         $accountTo->balance += $amount;
