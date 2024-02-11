@@ -13,15 +13,18 @@
                         @endif
                         <i class="fa-solid fa-money-bill-transfer" style="color: rgb(19, 92, 19); margin-left:15px"></i> </h3>
 
-                    <div class="card-body">
+                    <div class="card-body align-center">
                         <form action="{{ route('accounts-update', [$account, 'action' => $action]) }}" method="post">
 
-                            <div class="form-group mb-3">
+                            {{-- <div class="form-group mb-3">
                                 <label>Client:</label>
                                 <input type="text" name="name" class="form-control custom-input"
                                     value="{{ $account->client->name }} {{ $account->client->surname }}" readonly>
-                            </div>
-
+                            </div> --}}
+                            <h5 class="p-2"> Client name: <b>{{ $account->client->name }} {{ $account->client->surname }} </b></h5>
+                            <h5 class="p-2"> Account number: <b>{{ $account->accountNumber }}</b></h5>
+                            <h5 class="p-2"> Account balance: <b>{{ $account->balance }}€</b></h5>
+{{-- 
                             <div class="form-group mb-3">
                                 <label>Account Number:</label>
                                 <input type="text" name="surname" class="form-control custom-input"
@@ -31,9 +34,10 @@
                                 <label>Account Balance:</label>
                                 <input type="text" name="balance" class="form-control custom-input" value="{{ $account->balance }} €"
                                     readonly>
-                            </div>
+                            </div> --}}
                             <div class="form-group mb-3">
-                                <label>Amount €</label>
+                                {{-- <label>Amount €</label> --}}
+                                <h5 class="p-2 pb-0">Amount € </h5>
                                 <input type="number" name="amount" class="form-control" placeholder="€">
                             </div>
 

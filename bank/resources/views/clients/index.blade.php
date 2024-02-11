@@ -22,11 +22,11 @@
                     </form>
                 </div> --}}
 
-                <div class="card mt-5 client-list" >
+                <div class="card mt-5 client-list">
                     <h3 class="card-header">All clients</h3>
 
 
-                    <form action="{{route('clients-index')}}">
+                    <form action="{{ route('clients-index') }}">
                         <div class="container ">
                             <div class="row">
                                 <div class="col-3 ">
@@ -56,7 +56,8 @@
                                 <div class="col-3 mt-2">
                                     <div class="form-group mb-2">
                                         <label class="m-2">Search by</label>
-                                        <input type="text" name="s" class="form-control" placeholder="Name, surname" />
+                                        <input type="text" name="s" class="form-control"
+                                            placeholder="Name, surname" />
                                     </div>
                                 </div>
                                 <div class="col-3">
@@ -76,7 +77,7 @@
                     <div class="card-body p-4 ">
                         <table class="table ">
                             <thead>
-                                <tr >
+                                <tr>
                                     <th>Name</th>
                                     <th>Surname</th>
                                     <th>Personal code</th>
@@ -85,50 +86,59 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody >
+                            <tbody>
                                 @forelse ($clients as $client)
-                                {{-- //forechinam kolekcija --}}
-                                <tr>
-                                    <td>{{ $client->name }}</td>
-                                    <td>{{ $client->surname }}</td>
-                                    <td>{{ $client->personalNumber }}</td>
-                                    <td>
-                                        @if ($client->accounts()->count() > 0)
-                                        <div class="card-body">
-                                            {{-- cia duoda kolekcija su visai truckais. o jei uzdesime (), pasiimam priklausomybe ir joje paskaiciuoti. Duomenu bazes uzklausos countas ...  --}}
-                                            <ul class="list-group list-group-flush">
-                                                @foreach ($client->accounts as $account)
-                                                <a style="text-decoration:none" href={{ route('accounts-show', $account) }} > <li class="list-group-item">{{ $account->accountNumber }}</li> </a>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($client->accounts()->count() > 0)
-                                        <div class="card-body">
-                                            {{-- cia duoda kolekcija su visai truckais. o jei uzdesime (), pasiimam priklausomybe ir joje paskaiciuoti. Duomenu bazes uzklausos countas ...  --}}
-                                            <ul class="list-group list-group-flush">
-                                                @foreach ($client->accounts as $account)
-                                                <li class="list-group-item"> {{ $account->balance }} € </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                      
-                                        @else
-                                        -
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-success m-1" href={{ route('clients-edit', $client) }}>Edit</a>
-                                        <a class="btn btn-danger m-1" href={{ route('clients-show', $client) }}>Show</a>
-                                        <a class="btn btn-secondary m-1" href={{ route('clients-delete', $client) }}>Delete</a>
-                                    </td>
-                                </tr>
+                                    {{-- //forechinam kolekcija --}}
+                                    <tr>
+                                        <td class="align-middle">{{ $client->name }}</td>
+                                        <td class="align-middle">{{ $client->surname }}</td>
+                                        <td class="align-middle">{{ $client->personalNumber }}</td>
+                                        <td>
+                                            @if ($client->accounts()->count() > 0)
+                                                {{-- cia duoda kolekcija su visai truckais. o jei uzdesime (), pasiimam priklausomybe ir joje paskaiciuoti. Duomenu bazes uzklausos countas ...  --}}
+                                                <ul class="list-group list-group-flush custom-account-list">
+                                                    @foreach ($client->accounts as $account)
+                                                        <a style="text-decoration:none"
+                                                            href={{ route('accounts-show', $account) }}>
+                                                            <li class="list-group-item custom-account-list">
+                                                                {{ $account->accountNumber }}</li>
+                                                        </a>
+                                                    @endforeach
+                                                </ul>
+                                                @else
+                                                <ul class="list-group list-group-flush custom-account-list">
+                                                    <li class="list-group-item"> No accounts</li>
+                                                </ul>
+                                         
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($client->accounts()->count() > 0)
+                                                {{-- cia duoda kolekcija su visai truckais. o jei uzdesime (), pasiimam priklausomybe ir joje paskaiciuoti. Duomenu bazes uzklausos countas ...  --}}
+                                                <ul class="list-group list-group-flush">
+                                                    @foreach ($client->accounts as $account)
+                                                        <li class="list-group-item"> {{ $account->balance }} € </li>
+                                                    @endforeach
+                                                </ul>
+                                            @else
+                                                <ul class="list-group list-group-flush custom-account-list">
+                                                    <li class="list-group-item"> - </li>
+                                                </ul>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success m-1"
+                                                href={{ route('clients-edit', $client) }}>Edit</a>
+                                            <a class="btn btn-danger m-1"
+                                                href={{ route('clients-show', $client) }}>Show</a>
+                                            <a class="btn btn-secondary m-1"
+                                                href={{ route('clients-delete', $client) }}>Delete</a>
+                                        </td>
+                                    </tr>
                                 @empty
-                                <tr>
-                                    <td colspan="6">No Clients to show</td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="6">No Clients to show</td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
@@ -139,10 +149,10 @@
                 </div>
 
                 @if ($perPage)
-                <div class="mt-3">
-                    {{ $clients->links() }}
-                </div>
-            @endif
+                    <div class="mt-3">
+                        {{ $clients->links() }}
+                    </div>
+                @endif
 
 
 
