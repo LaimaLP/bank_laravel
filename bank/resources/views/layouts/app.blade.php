@@ -110,6 +110,7 @@
 
         <main class="py-4" >
             @include('layouts.errors')
+            @include('layouts.error')
             @include('layouts.ok')
             @include('layouts.info')
             @yield('content')
