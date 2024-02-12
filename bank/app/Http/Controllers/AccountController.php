@@ -22,14 +22,17 @@ class AccountController extends Controller
 
     public function create(Request $request)
     {
+        // dd($request);
         $accountNumber = "LT" . rand(10 ** 17, 10 ** 18 - 1);
         $clients = Client::all();
         $balance = 0;
+        $clientId = (int) $request->query('client_id', '');
 
         return view('accounts.create', [
             'clients' => $clients,
             'accountNumber' => $accountNumber,
             'balance' => $balance,
+            'clientId'=>$clientId,
         ]);
     }
 
