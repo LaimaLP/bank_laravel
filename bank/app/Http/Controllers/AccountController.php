@@ -78,6 +78,7 @@ class AccountController extends Controller
         $account_id_from = (int) $request->query('account_id_from', '');
         $account_id_to = (int) $request->query('account_id_to', '');
         $confirmationNeeded = $request->query('confirmationNeeded', false);
+        $amount = (int) $request->query('amount', '');
 
         return view('accounts.transfer', [
             'accounts' => $accounts,
@@ -86,6 +87,8 @@ class AccountController extends Controller
             'account_id_from' => $account_id_from,
             'account_id_to' =>  $account_id_to,
             'confirmationNeeded'=>$confirmationNeeded,
+            'amount'=>$amount,
+            
         ]);
     }
 

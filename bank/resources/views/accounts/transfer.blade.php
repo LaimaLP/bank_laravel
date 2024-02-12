@@ -9,7 +9,7 @@
                             style="color: rgb(19, 92, 19); margin-left:15px"></i></h3>
 
                     <div class="card-body " style="font-size:20px; font-weight:bold">
-                        <form action="{{ route('accounts-transferUp') }}" method="post">
+                        <form action="{{ route('accounts-transferUp') }}" method="post" my-form>
                             <div class="form-group mb-3">
                                 <label>Transfer FROM</label>
                                 <select class="form-select" name="account_id_from"
@@ -41,10 +41,10 @@
                                 </select>
                             </div>
                             <label>Add amount, €</label>
-                            <input type="number" name="amount" style="font-size:20px;" class="form-control"
+                            <input type="number" name="amount" id="transfer-amount" style="font-size:20px;" class="form-control"
                                 placeholder="€">
 
-                            <button type="submit" class="btn btn-primary mt-3 ">Transfer</button>
+                            <button transfer-form-btn type="button" class="btn btn-primary mt-3 ">Transfer</button>
                             @csrf
                             @method('put')
                         </form>
@@ -52,36 +52,27 @@
                 </div>
             </div>
         </div>
-        @if ($confirmationNeeded)
-        <div class="modal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Are you sure?</h5>
-                        <form action="{{ route('accounts-transfer') }}" method="get">
-                            <button type="submit" class="btn-close"></button>
-                            @csrf
-                        </form>
-                    </div>
-                    <div class="modal-body">
-                        <p> Operation more than 1000 euros need confirmation. </p>
-                    </div>
-                    <div class="modal-footer">
-        
-                        <form action="{{ route('accounts-transfer') }}" method="get">
-                            <button type="submit" data-close class="btn btn-secondary">Ne</button>
-                            @csrf
-                        </form>
-                        <form action="{{ route('accounts-transferUp') }}" method="post">
-                            <button type="submit" data-destroy class="btn btn-primary">Transfer</button>
-                            @csrf
-                            @method('put')
-                        </form>
+
+            <div class="modal" id="transfer-modal">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Are you sure?</h5>
+                                <button type="submit" class="btn-close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p> Operation more than {{$amount}} euros need confirmation. </p>
+                        </div>
+                        <div class="modal-footer">
+                 
+                                <button type="submit" data-close class="btn btn-secondary">Ne</button>
+                                <button type="submit" data-destroy class="btn btn-primary">Transfer</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        @endif
+
     </div>
 @endsection
 @section('title', 'Transfer')
