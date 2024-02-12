@@ -143,7 +143,7 @@
                             </tbody>
                         </table>
                         <div>
-                            <a href="{{ route('clients-create') }}" class="btn btn-success">Pridėti</a>
+                            <a href="{{ route('clients-create') }}" class="btn btn-success">Add new client</a>
                         </div>
                     </div>
                 </div>
