@@ -22,7 +22,13 @@
                                 <select class="form-select" name="client_id">
                                     <option selected value="0"><b>Choose Client</b></option>
                                     @foreach ($clients as $client)
-                                    <option value="{{$client->id}}">{{$client->name}} {{$client->surname}}</option>
+                                    <option value="{{$client->id}}"
+                                        @if (old('client_id', $clientId ? $clientId : 0) == $client->id) selected @endif>
+                                        
+                                        
+                                        
+                                        
+                                        {{$client->name}} {{$client->surname}}</option>
                                     @endforeach
                                 </select>
                                 <small class="form-text text-muted">Choose client for account</small>
@@ -32,7 +38,7 @@
 
 
 
-                            <button type="submit" class="btn btn-primary">Add new client</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                             @csrf 
                             {{-- jei sito neuzrasome forma siuncia i 419 --}}
                         </form>
