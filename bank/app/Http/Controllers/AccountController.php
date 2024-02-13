@@ -110,11 +110,7 @@ class AccountController extends Controller
             return redirect()->route('accounts-transfer',  $accountsData)->with('error', "Not enough balance. Max able transfer amount is $accountFrom->balance €.");
         } elseif ($amount < 0) {
             return redirect()->route('accounts-transfer',  $accountsData)->with('error', "Input must be positive integer.");
-        } elseif ($amount >= 1000) {
-            $accountsData = [...$accountsData, 'confirmationNeeded' => true,  'amount'=>$amount, 'accountFrom'=>$accountFrom, 'accountTo'=>$accountTo];
-            // dd($accountsData);
-            return redirect()->route('accounts-transfer', $accountsData);
-        }
+        } 
 
         $accountFrom->balance -= $amount;
         $accountTo->balance += $amount;

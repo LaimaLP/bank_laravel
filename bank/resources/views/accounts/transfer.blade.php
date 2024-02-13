@@ -53,25 +53,7 @@
             </div>
         </div>
 
-            <div class="modal" id="transfer-modal">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Are you sure?</h5>
-                                <button type="submit" class="btn-close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p> Operation more than {{$amount}} euros need confirmation. </p>
-                        </div>
-                        <div class="modal-footer">
-                 
-                                <button type="submit" data-close class="btn btn-secondary">Ne</button>
-                                <button type="submit" data-destroy class="btn btn-primary">Transfer</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+@include('accounts.confirm')
 
     </div>
 @endsection
