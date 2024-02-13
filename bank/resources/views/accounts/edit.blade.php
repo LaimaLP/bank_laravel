@@ -11,59 +11,35 @@
                         @elseif ($action === 'withdraw')
                             Withdraw money
                         @endif
-                        <i class="fa-solid fa-money-bill-transfer" style="color: rgb(19, 92, 19); margin-left:15px"></i> </h3>
-
+                        <i class="fa-solid fa-money-bill-transfer" style="color: rgb(19, 92, 19); margin-left:15px"></i>
+                    </h3>
                     <div class="card-body align-center">
-                        <form action="{{ route('accounts-update', [$account, 'action' => $action]) }}" method="post">
-
-                            {{-- <div class="form-group mb-3">
-                                <label>Client:</label>
-                                <input type="text" name="name" class="form-control custom-input"
-                                    value="{{ $account->client->name }} {{ $account->client->surname }}" readonly>
-                            </div> --}}
-                            <h5 class="p-2"> Client name: <b>{{ $account->client->name }} {{ $account->client->surname }} </b></h5>
+                        <form action="{{ route('accounts-update', [$account, 'action' => $action]) }}" form-edit-money
+                            method="post">
+                            <h5 class="p-2"> Client name: <b>{{ $account->client->name }} {{ $account->client->surname }}
+                                </b></h5>
                             <h5 class="p-2"> Account number: <b>{{ $account->accountNumber }}</b></h5>
                             <h5 class="p-2"> Account balance: <b>{{ $account->balance }} €</b></h5>
-{{-- 
                             <div class="form-group mb-3">
-                                <label>Account Number:</label>
-                                <input type="text" name="surname" class="form-control custom-input"
-                                    value="{{ $account->accountNumber }}" readonly>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label>Account Balance:</label>
-                                <input type="text" name="balance" class="form-control custom-input" value="{{ $account->balance }} €"
-                                    readonly>
-                            </div> --}}
-                            <div class="form-group mb-3">
-                                {{-- <label>Amount €</label> --}}
                                 <h5 class="p-2 pb-0">Amount € </h5>
-                                <input type="number" name="amount" class="form-control" placeholder="€">
+                                <input type="number" name="amount" class="form-control" placeholder="€" id="edit-amount">
                             </div>
-
-
                             @if ($action === 'add')
-                                <button type="submit" class="btn btn-primary m-">Add Money</button>
+                                <button type="button" edit-form-submit class="btn btn-primary m-">Add Money</button>
                             @elseif ($action === 'withdraw')
-                                <button type="submit" class="btn btn-primary m-">Withdraw Money</button>
+                                <button type="button" edit-form-submit class="btn btn-primary m-">Withdraw Money</button>
                             @endif
-
-
-
-
-
-
-
-
                             <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1">Cancel</a>
                             @csrf
                             @method('put')
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
+        @include('accounts.confirm')
+
     </div>
+
 @endsection
 @section('title', 'Edit clients data')

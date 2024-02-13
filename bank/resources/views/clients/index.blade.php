@@ -128,11 +128,11 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-success m-1"
-                                                href={{ route('clients-edit', $client) }}>Edit</a>
+                                                href={{ route('clients-edit', $client) }} title="Edit"><i class="fa-solid fa-file-pen"></i></a>
+                                            <a class="btn btn-primary m-1"
+                                                href={{ route('clients-show', $client) }} style="color:white"><i class="fa-solid fa-circle-info"></i></a>
                                             <a class="btn btn-danger m-1"
-                                                href={{ route('clients-show', $client) }}>Show</a>
-                                            <a class="btn btn-secondary m-1"
-                                                href={{ route('clients-delete', $client) }}>Delete</a>
+                                                href={{ route('clients-delete', $client) }}><i class="fa-solid fa-trash-can"></i></a>
                                         </td>
                                     </tr>
                                 @empty

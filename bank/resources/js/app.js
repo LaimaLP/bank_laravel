@@ -6,6 +6,7 @@
 
 import './bootstrap';
 import './transfer';
+import './editMoney';
 import { createApp } from 'vue';
 
 /**
