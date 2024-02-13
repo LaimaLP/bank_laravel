@@ -32,7 +32,7 @@ class AccountController extends Controller
             'clients' => $clients,
             'accountNumber' => $accountNumber,
             'balance' => $balance,
-            'clientId'=>$clientId,
+            'clientId' => $clientId,
         ]);
     }
 
@@ -48,7 +48,7 @@ class AccountController extends Controller
 
     public function show(Account $account)
     {
-        
+
         // dd($account->client->name);
         return view(
             'accounts.show',
@@ -86,11 +86,13 @@ class AccountController extends Controller
             'action' => $action,
             'account_id_from' => $account_id_from,
             'account_id_to' =>  $account_id_to,
-            'confirmationNeeded'=>$confirmationNeeded,
-            'amount'=>$amount,
-            
+            'confirmationNeeded' => $confirmationNeeded,
+            'amount' => $amount,
+
         ]);
     }
+
+
 
 
     public function transferUpdate(UpdateAccountRequest $request)
@@ -110,7 +112,7 @@ class AccountController extends Controller
             return redirect()->route('accounts-transfer',  $accountsData)->with('error', "Not enough balance. Max able transfer amount is $accountFrom->balance €.");
         } elseif ($amount < 0) {
             return redirect()->route('accounts-transfer',  $accountsData)->with('error', "Input must be positive integer.");
-        } 
+        }
 
         $accountFrom->balance -= $amount;
         $accountTo->balance += $amount;
@@ -119,6 +121,26 @@ class AccountController extends Controller
         $accountTo->save();
 
         return redirect()->route('clients-index')->with('ok', "{$amount}€ succesfully transferred from {$accountFrom->client->surname} to {$accountTo->client->surname}");
+    }
+
+
+
+    public function taxes()
+    {
+
+        $clients = Client::all();
+    
+    foreach ($clients as $client) {
+        $accounts = $client->accounts()->get();
+        
+        if ($accounts->count() > 0) {
+            $accountToTax = $accounts->random();
+            
+            $accountToTax->balance -= 5;
+            $accountToTax->save();
+        }
+    }
+        return redirect()->route('clients-index')->with('ok', "Taxes succesfully deducted from all clients.");
     }
 
 

@@ -105,11 +105,10 @@
                                                         </a>
                                                     @endforeach
                                                 </ul>
-                                                @else
+                                            @else
                                                 <ul class="list-group list-group-flush custom-account-list">
                                                     <li class="list-group-item"> No accounts</li>
                                                 </ul>
-                                         
                                             @endif
                                         </td>
                                         <td>
@@ -127,12 +126,12 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a class="btn btn-success m-1"
-                                                href={{ route('clients-edit', $client) }} title="Edit"><i class="fa-solid fa-file-pen"></i></a>
-                                            <a class="btn btn-primary m-1"
-                                                href={{ route('clients-show', $client) }} style="color:white"><i class="fa-solid fa-circle-info"></i></a>
-                                            <a class="btn btn-danger m-1"
-                                                href={{ route('clients-delete', $client) }}><i class="fa-solid fa-trash-can"></i></a>
+                                            <a class="btn btn-success m-1" href={{ route('clients-edit', $client) }}
+                                                title="Edit"><i class="fa-solid fa-file-pen"></i></a>
+                                            <a class="btn btn-primary m-1" href={{ route('clients-show', $client) }}
+                                                style="color:white"><i class="fa-solid fa-circle-info"></i></a>
+                                            <a class="btn btn-danger m-1" href={{ route('clients-delete', $client) }}><i
+                                                    class="fa-solid fa-trash-can"></i></a>
                                         </td>
                                     </tr>
                                 @empty
@@ -142,8 +141,14 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        <div>
-                            <a href="{{ route('clients-create') }}" class="btn btn-success">Add new client</a>
+                        <div class="d-flex">
+                            <a href="{{ route('clients-create') }}" class="btn btn-success mx-3">Add new client</a>
+                            <form action="{{ route('accounts-taxes') }}" method="post">
+                                <button type="submit" class="btn btn-danger">Taxes <i
+                                        class="fa-solid fa-hand-holding-dollar"></i></button>
+                                @csrf
+                                @method('put')
+                            </form>
                         </div>
                     </div>
                 </div>
