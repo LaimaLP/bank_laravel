@@ -36,9 +36,12 @@
 
 
 
-
+                            <div class="d-flex">
+                                <a href="{{ route('clients-index') }}" class="btn btn-secondary mx-2"><i
+                                        class="fa-solid fa-backward"></i> All clients</a>
 
                             <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
                             @csrf 
                             {{-- jei sito neuzrasome forma siuncia i 419 --}}
                         </form>

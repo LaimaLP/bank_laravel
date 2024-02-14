@@ -42,7 +42,7 @@ class AccountController extends Controller
 
 
         Account::create($request->all());
-        return redirect()->route('clients-index');
+        return redirect()->route('clients-index')->with('ok', "Account succesfully created.");;
     }
 
 
@@ -74,7 +74,6 @@ class AccountController extends Controller
         $accounts = Account::all();
         $clients = Client::all();
         $action = "transfer";
-        // dd($request);
         $account_id_from = (int) $request->query('account_id_from', '');
         $account_id_to = (int) $request->query('account_id_to', '');
         $confirmationNeeded = $request->query('confirmationNeeded', false);
@@ -97,7 +96,6 @@ class AccountController extends Controller
 
     public function transferUpdate(UpdateAccountRequest $request)
     {
-        // dd($request);
 
         $account_id_from = (int)$request->input('account_id_from');
         $account_id_to = (int)$request->input('account_id_to');
@@ -187,8 +185,8 @@ class AccountController extends Controller
     public function destroy(Account $account)
     {
 
-        if ($account->balance > 0) {
-            return redirect()->route('clients-delete')->with('ok', "Account can't be deleted. Balance {$account->balance}");
+        if ($account->balance !== 0) {
+            return redirect()->route('clients-index')->with('error', "Account can't be deleted. Client's balance {$account->balance} €");
         }
 
 

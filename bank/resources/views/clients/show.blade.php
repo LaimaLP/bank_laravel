@@ -33,7 +33,9 @@
                             </div>
                         @endif
                         </td>
-                        <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1">All clients</a>
+                        <div class="d-flex">
+                        <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1"><i
+                            class="fa-solid fa-backward"></i> All clients</a>
                         <a href="{{ route('accounts-create', ['client_id'=>$client->id])}}" class="btn btn-primary m-1">Add new account</a>
 
                     </div>

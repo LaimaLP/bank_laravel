@@ -18,12 +18,14 @@
                             <input type="text" name="surname" class="form-control"
                                 value="{{ $account->balance }} € "readonly>
                         </div>
-                        <a href="{{ route('clients-show', $account->client->id) }}" class="btn btn-secondary m-1">Back</a>
+                        <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1"> <i
+                            class="fa-solid fa-backward"></i> All clients</a>
                         <a href="{{ route('accounts-edit', ['account' => $account, 'action' => 'add']) }}"
                             class="btn btn-success m-1">Add money</a>
                         <a href="{{ route('accounts-edit', ['account' => $account, 'action' => 'withdraw']) }}"
-                            class="btn btn-danger m-1">Withdraw money</a>
-                        <a href="{{ route('accounts-delete', $account) }}" class="btn btn-secondary m-1">Delete</a>
+                            class="btn btn-primary m-1">Withdraw money</a>
+                        <a href="{{ route('accounts-delete', $account) }}" class="btn btn-danger m-1"> <i
+                            class="fa-solid fa-trash-can"></i></a>
                     </div>
                 </div>
             </div>

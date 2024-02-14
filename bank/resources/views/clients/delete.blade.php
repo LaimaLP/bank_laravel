@@ -10,7 +10,7 @@
                     <div class="card-body">
 
                         @if ($client->accounts()->count() > 0)
-                            <p> Client <b>{{ $client->name }} {{ $client->surname }}</b> has active accounts.
+                            <p> Client <b>{{ $client->name }} {{ $client->surname }}</b> has active accounts and can't be deleted.
 
 
                             <ul class="list-group list-group-flush">
@@ -23,7 +23,8 @@
 
                         @endif
 
-                        <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1">Go back</a>
+                        <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1"> <i
+                            class="fa-solid fa-backward"></i> Go back</a>
                         @if ($client->accounts()->count() == 0 || !($client->accounts->where('balance', '!=', 0)->count() > 0))
                             <form action="{{ route('clients-destroy', $client) }}" method="post">
                                 <button type="submit" class="btn btn-danger m-1">Delete</button>

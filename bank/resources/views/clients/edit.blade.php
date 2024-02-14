@@ -24,8 +24,9 @@
                                 <input type="text" class="form-control" value="{{old('personalNumber', $client->personalNumber)}}" readonly>
                                 <small class="form-text text-muted">Read Only</small>
                             </div>
-                            <button type="submit" class="btn btn-primary m-">Save</button>
                             <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1">Cancel</a>
+                            <button type="submit" class="btn btn-success m-1">Save</button>
+                            <a href="{{ route('accounts-create', ['client_id'=>$client->id])}}" class="btn btn-primary m-1">Add new account</a>
                             @csrf 
                             @method('put')
                         </form>

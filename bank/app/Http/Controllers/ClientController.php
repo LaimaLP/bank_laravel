@@ -16,22 +16,18 @@ class ClientController extends Controller
     {
 
         $sorts = Client::getSorts();
-        // dd($sorts);
         $sortBy = $request->query('sort', '');
         $perPageSelect = Client::getPerPageSelect();
         $perPage = (int)$request->query('per_page', 3);
         $s = $request->query('s', '');
 
-        // $clients = Client::all();
-        // dump($clients);
         $clients = Client::query();
-        // dd($clients);
 
 
         $clients = match ($sortBy) {
             'name_asc' => $clients->orderBy('surname'),
             'name_desc' => $clients->orderByDesc('surname'),
-            default => $clients,
+            default => $clients->orderBy('surname'),
         };
 
         if ($s) {

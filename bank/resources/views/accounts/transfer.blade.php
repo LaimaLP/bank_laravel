@@ -41,10 +41,13 @@
                                 </select>
                             </div>
                             <label>Add amount, €</label>
-                            <input type="number" name="amount" id="transfer-amount" style="font-size:20px;" class="form-control"
-                                placeholder="€">
-
-                            <button transfer-form-btn type="button" class="btn btn-primary mt-3 ">Transfer</button>
+                            <input type="number" name="amount" id="transfer-amount" style="font-size:20px;"
+                                class="form-control" placeholder="€">
+                            <div class="d-flex mt-2">
+                                <a href="{{ route('clients-index') }}" class="btn btn-secondary mx-2"><i
+                                        class="fa-solid fa-backward"></i> </a>
+                                <button transfer-form-btn type="button" class="btn btn-primary ">Transfer</button>
+                            </div>
                             @csrf
                             @method('put')
                         </form>
@@ -53,7 +56,7 @@
             </div>
         </div>
 
-@include('accounts.confirm')
+        @include('accounts.confirm')
 
     </div>
 @endsection
