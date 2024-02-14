@@ -19,6 +19,8 @@ class Client extends Model
         'noSort' => 'Default',
         'name_asc' => 'Surname (A-Z)',
         'name_desc' => 'Surname(Z-A)',
+        'zero_balance'=>'Balance 0',
+        'no_accounts'=>'No accounts',
     ];
 
     protected static $perPageSelect = [

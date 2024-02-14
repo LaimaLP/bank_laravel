@@ -24,11 +24,34 @@ class ClientController extends Controller
         $clients = Client::query();
 
 
-        $clients = match ($sortBy) {
-            'name_asc' => $clients->orderBy('surname'),
-            'name_desc' => $clients->orderByDesc('surname'),
-            default => $clients->orderBy('surname'),
-        };
+        // $clients = match ($sortBy) {
+        //     'name_asc' => $clients->orderBy('surname'),
+        //     'name_desc' => $clients->orderByDesc('surname'),
+        //     'zero_balance'=>$clients->whereHas('accounts', function ($query) {$query->where('balance', 0);})->get(),
+        //     default => $clients->orderBy('surname'),
+        // };
+
+
+        switch ($sortBy) {
+            case 'name_asc':
+                $clients = $clients->orderBy('surname');
+                break;
+            case 'name_desc':
+                $clients = $clients->orderByDesc('surname');
+                break;
+            case 'zero_balance':
+                $clients = $clients->whereHas('accounts', function ($query) {
+                    $query->where('balance', 0);
+                });
+                break;
+           
+                
+            default:
+                $clients = $clients->orderBy('surname');
+                break;
+        }
+        
+
 
         if ($s) {
             $keywords = explode(' ', $s);
