@@ -25,8 +25,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="opacity:0.9; z-index:1">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <b> Future Bank </b>
+                <a class="navbar-brand" href="{{ url('/home') }}">
+                    <b> Future Bank <i class="fa-solid fa-piggy-bank" style="font-size: 30px; color:rgb(87, 87, 3)"></i></b>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
