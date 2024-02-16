@@ -16,7 +16,18 @@ class ClientController extends Controller
     {
 
         $sorts = Client::getSorts();
-        $sortBy = $request->query('sort', '');
+
+        if($request->query('sort', '')){
+            $sortBy = $request->query('sort', '');
+            
+            $_SESSION['clientSort'] =  $sortBy;
+        }elseif(isset($_SESSION['clientSort'])){
+            $sortBy = $_SESSION['clientSort'];
+        }else{
+            $sortBy = "";
+        }
+        
+        // $sortBy = $request->query('sort', '');
         $perPageSelect = Client::getPerPageSelect();
         $perPage = (int)$request->query('per_page', 3);
         $s = $request->query('s', '');
@@ -30,6 +41,7 @@ class ClientController extends Controller
         //     'zero_balance'=>$clients->whereHas('accounts', function ($query) {$query->where('balance', 0);})->get(),
         //     default => $clients->orderBy('surname'),
         // };
+
 
 
         switch ($sortBy) {
