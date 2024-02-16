@@ -3,28 +3,66 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h1> BANK statistics: </h1>
+                        <h1> Future BANK statistics <i class="fa-solid fa-magnifying-glass-chart"> :</i></h1>
                     </div>
                     <div class="card-body">
-                    
-                        <p>
-                            In Future bank are {{ $accountsCount }} accounts. And {{ $clientsCount }} clients.
-                        </p>
-                        <h4> The maximum balance is {{ $accountWithMaxBalance->balance }} euros.
-                            {{ $accountWithMaxBalance->id }} </h4>
-                        <h4> Bank's total balance: {{ $totalBalance }} euros</h4>
-                        <h4> The average balance in accounts is: {{ $balanceAverage }}</h4>
-                        <h4> In the FutureBank are {{ $accountsWithZeroBalance }} accounts with zero balance</h4>
-                        <h4>And {{ $accountsWithNegativeBalanceCount }} accounts with negative balance.</h4>
 
+                        <table class="table">
+                            {{-- <caption>List of users</caption> --}}
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Info</th>
+                                    <th scope="col">Statistics</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>In <b>Future bank</b> are active accounts:</td>
+                                    <td>{{ $accountsCount }} unit</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Clients count:</td>
+                                    <td>{{ $clientsCount }} unit</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>The maximum balance in client's account: </td>
+                                    <td>{{ $accountWithMaxBalance->balance }} €</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>Bank's total balance: </td>
+                                    <td>{{ $totalBalance }} €</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
+                                    <td>The average balance in accounts is: </td>
+                                    <td>{{ number_format($balanceAverage, 2, '.', '')}} €</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">6</th>
+                                    <td>Accounts with
+                                        zero balance: </td>
+                                    <td>{{ $accountsWithZeroBalance }} unit</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">7</th>
+                                    <td>Accounts with negative
+                                        balance: </td>
+                                    <td>{{ $accountsWithNegativeBalanceCount }} unit</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-   
 @endsection
+@section('title', 'Bank Statistics')
