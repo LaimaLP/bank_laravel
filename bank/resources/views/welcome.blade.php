@@ -4,7 +4,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h2 class="card"> Welcom to Future Bank </h2>
+                <div class="card justify-content-center">
+                    <h2 class="card-header text-center"> Welcom to Future Bank <i class="fa-solid fa-building-columns"></i> </h2>
+                    <h2 class="card-body text-center"> It's the bank's public page </h2>
+                </div>
             </div>
         </div>
     </div>

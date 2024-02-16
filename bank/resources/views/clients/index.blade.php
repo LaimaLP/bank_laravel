@@ -53,14 +53,14 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-3 mt-2">
+                                <div class="col-3">
                                     <div class="form-group mb-2">
                                         <label class="m-2">Search by</label>
-                                        <input type="text" name="s" class="form-control"
+                                        <input type="text" name="s" class="form-control mt-2"
                                             placeholder="Name, surname" />
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-3 ">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary mt-5">Sort</button>
                                         <a href="{{ route('clients-index') }}"
