@@ -18,16 +18,16 @@ class ClientController extends Controller
 
         $sorts = Client::getSorts();
 
-        if($request->query('sort', '')){
+        if ($request->query('sort', '')) {
             $sortBy = $request->query('sort', '');
-            
+
             $_SESSION['clientSort'] =  $sortBy;
-        }elseif(isset($_SESSION['clientSort'])){
+        } elseif (isset($_SESSION['clientSort'])) {
             $sortBy = $_SESSION['clientSort'];
-        }else{
+        } else {
             $sortBy = "";
         }
-        
+
         // $sortBy = $request->query('sort', '');
         $perPageSelect = Client::getPerPageSelect();
         $perPage = (int)$request->query('per_page', 3);
@@ -56,14 +56,17 @@ class ClientController extends Controller
                 $clients = $clients->whereHas('accounts', function ($query) {
                     $query->where('balance', 0);
                 });
+                $zeroBalanceCount = $clients->count();
                 break;
-           
-                
+            case 'no_accounts':
+                $clients = $clients->whereDoesntHave('accounts');
+                $noAccountsCount = $clients->count();
+                break;
             default:
                 $clients = $clients->orderBy('surname');
                 break;
         }
-        
+
 
 
         if ($s) {
@@ -71,8 +74,8 @@ class ClientController extends Controller
             if (count($keywords) > 1) {
                 $clients = $clients->where(function ($query) use ($keywords) {
                     foreach (range(0, 1) as $index) {
-                        $query->orWhere('name', 'like', '%'.$keywords[$index].'%')
-                        ->where('surname', 'like', '%'.$keywords[1 - $index].'%');
+                        $query->orWhere('name', 'like', '%' . $keywords[$index] . '%')
+                            ->where('surname', 'like', '%' . $keywords[1 - $index] . '%');
                     }
                 });
             } else {
@@ -88,6 +91,7 @@ class ClientController extends Controller
             $clients = $clients->get();
         };
 
+        // $noAccountsCount = $clients->whereDoesntHave('accounts')->count();
         return view(
             'clients.index',
             [
@@ -96,6 +100,8 @@ class ClientController extends Controller
                 'sortBy' => $sortBy,
                 'perPageSelect' => $perPageSelect,
                 'perPage' => $perPage,
+                'noAccountsCount' => $noAccountsCount ?? "",
+                'zeroBalanceCount' => $zeroBalanceCount ?? "",
             ]
         );
     }
@@ -109,14 +115,14 @@ class ClientController extends Controller
     {
         $isPersonalNumberValid = (new PersonalNumberService($request->personalNumber))->validPersonalCode();
 
-        if(!$isPersonalNumberValid){
+        if (!$isPersonalNumberValid) {
             return redirect()->back()->withInput()->withErrors(['personalNumber' => 'Personal number is invalid.']);
         } else if (Client::where('personalNumber', '=', $request->personalNumber)->exists()) {
             return redirect()->back()->withInput()->withErrors(['personalNumber' => 'Member with this personal code already exists.']);
         }
 
-        Client::create($request->all()); 
-     
+        Client::create($request->all());
+
         return redirect()->route('clients-index')->with('ok', 'Client added');
     }
 
@@ -124,7 +130,7 @@ class ClientController extends Controller
     public function show(Client $client)
     {
 
-    
+
         return view(
             'clients.show',
             [

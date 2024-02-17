@@ -149,16 +149,22 @@
                             </tbody>
                         </table>
                         @if ($role->show('admin'))
-                        <div class="d-flex">
-                            <a href="{{ route('clients-create') }}" class="btn btn-success mx-3">Add new client</a>
-                            <form action="{{ route('accounts-taxes') }}" method="post">
-                                <button type="submit" class="btn btn-danger">Taxes <i
-                                        class="fa-solid fa-hand-holding-dollar"></i></button>
-                                @csrf
-                                @method('put')
-                            </form>
-                        </div>
+                            <div class="d-flex align-items-center">
+                                <a href="{{ route('clients-create') }}" class="btn btn-success mx-3">Add new client</a>
+                                <form action="{{ route('accounts-taxes') }}" method="post">
+                                    <button type="submit" class="btn btn-danger">Taxes <i
+                                            class="fa-solid fa-hand-holding-dollar"></i></button>
+                                    @csrf
+                                    @method('put')
+                                </form>
+                                @if ($sortBy == 'no_accounts')
+                                    <span class="btn btn-light  mx-auto"> Count: {{ $noAccountsCount }} clients</span>
+                                @elseif($sortBy == 'zero_balance')
+                                    <span class="btn btn-light  mx-auto"> Count: {{ $zeroBalanceCount }} clients with zero balance</span>
+                                @endif
+                            </div>
                         @endif
+
                     </div>
                 </div>
 
