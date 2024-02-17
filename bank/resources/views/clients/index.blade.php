@@ -1,5 +1,5 @@
 @extends('layouts.app')
-{{-- @inject('role', 'App\Services\RolesService') --}}
+@inject('role', 'App\Services\RolesService')
 
 @section('content')
 
@@ -126,12 +126,18 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a class="btn btn-success m-1" href={{ route('clients-edit', $client) }}
-                                                title="Edit"><i class="fa-solid fa-file-pen"></i></a>
+
+                                            @if ($role->show('admin'))
+                                                <a class="btn btn-success m-1" href={{ route('clients-edit', $client) }}
+                                                    title="Edit"><i class="fa-solid fa-file-pen"></i></a>
+                                            @endif
                                             <a class="btn btn-primary m-1" href={{ route('clients-show', $client) }}
                                                 style="color:white"><i class="fa-solid fa-circle-info"></i></a>
-                                            <a class="btn btn-danger m-1" href={{ route('clients-delete', $client) }}><i
-                                                    class="fa-solid fa-trash-can"></i></a>
+                                            @if ($role->show('admin'))
+                                                <a class="btn btn-danger m-1"
+                                                    href={{ route('clients-delete', $client) }}><i
+                                                        class="fa-solid fa-trash-can"></i></a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty
@@ -141,6 +147,7 @@
                                 @endforelse
                             </tbody>
                         </table>
+                        @if ($role->show('admin'))
                         <div class="d-flex">
                             <a href="{{ route('clients-create') }}" class="btn btn-success mx-3">Add new client</a>
                             <form action="{{ route('accounts-taxes') }}" method="post">
@@ -150,6 +157,7 @@
                                 @method('put')
                             </form>
                         </div>
+                        @endif
                     </div>
                 </div>
 
