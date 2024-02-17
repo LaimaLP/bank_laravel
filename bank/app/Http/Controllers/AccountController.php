@@ -138,7 +138,7 @@ class AccountController extends Controller
             $accountToTax->save();
         }
     }
-        return redirect()->route('clients-index')->with('ok', "Taxes succesfully deducted from all clients.");
+        return redirect()->route('clients-index')->with('info', "Taxes succesfully deducted from all clients.");
     }
 
 
