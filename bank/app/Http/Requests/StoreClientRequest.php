@@ -23,7 +23,8 @@ class StoreClientRequest extends FormRequest
         return [   // kad butina/jis stringas/min reiksmes/kiek max
             'name' => 'required|string|min:3|max:64|alpha:ascii',
             'surname'=>'required|string|min:3|max:64|alpha:ascii',
-            'personalNumber'=>'required|regex:/^\d{11}$/',
+            'personalNumber'=>'required',
+
         ];
     }
 
@@ -31,6 +32,7 @@ class StoreClientRequest extends FormRequest
     {
         return [
             
+          
 
         ];
  

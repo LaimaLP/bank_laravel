@@ -168,6 +168,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\PersonalNumberServiceProvider::class,
         App\Providers\RolesServiceProvider::class, //uzregistravimas, kad zinotu, kad jau galima kviesti. Idetas i krepsiuka
     ])->toArray(),
 

@@ -28,5 +28,7 @@ class Roles
         // $roles = explode('|', $roles);
 
         return $next($request);
+
+
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use App\Services\PersonalNumberService;
 
 class ClientController extends Controller
 {
@@ -106,9 +107,16 @@ class ClientController extends Controller
 
     public function store(StoreClientRequest $request)
     {
-        //sukuriam nauja modeli, mechanika
-        Client::create($request->all()); //imam visus duomenis, nevaliduotus
-        //po to keliaujam i mechanic index'a.
+        $isPersonalNumberValid = (new PersonalNumberService($request->personalNumber))->validPersonalCode();
+
+        if(!$isPersonalNumberValid){
+            return redirect()->back()->withInput()->withErrors(['personalNumber' => 'Personal number is invalid.']);
+        } else if (Client::where('personalNumber', '=', $request->personalNumber)->exists()) {
+            return redirect()->back()->withInput()->withErrors(['personalNumber' => 'Member with this personal code already exists.']);
+        }
+
+        Client::create($request->all()); 
+     
         return redirect()->route('clients-index')->with('ok', 'Client added');
     }
 

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @inject('role', 'App\Services\RolesService')
+@inject('code', 'App\Services\PersonalNumberService')
 
 @section('content')
 
