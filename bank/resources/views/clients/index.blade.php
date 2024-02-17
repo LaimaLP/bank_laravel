@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+{{-- @inject('role', 'App\Services\RolesService') --}}
 
 @section('content')
 

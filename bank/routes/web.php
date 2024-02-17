@@ -23,32 +23,30 @@ Route::get('/', function () {
 
 
 Route::prefix('clients')->name('clients-')->group(function () {
-    Route::get('/', [Client::class, 'index'])->name('index'); //rodysim sarasa
-    Route::get('/create', [Client::class, 'create'])->name('create'); //creato forma
-    Route::post('/', [Client::class, 'store'])->name('store'); //uzsaugojimas
-    Route::get('/{client}', [Client::class, 'show'])->name('show'); //konkretus mechanikas
-    Route::get('/{client}/edit', [Client::class, 'edit'])->name('edit'); // jo redagavimo forma
-    Route::put('/{client}', [Client::class, 'update'])->name('update'); //redaguosim
-    Route::get('/{client}/delete', [Client::class, 'delete'])->name('delete');  //deleto confirmacija
-    Route::delete('/{client}', [Client::class, 'destroy'])->name('destroy');
+    Route::get('/', [Client::class, 'index'])->middleware(['role:admin|employee|user'])->name('index'); 
+    Route::get('/create', [Client::class, 'create'])->middleware(['role:admin|employee'])->name('create'); 
+    Route::post('/', [Client::class, 'store'])->middleware(['role:admin|employee'])->name('store'); 
+    Route::get('/{client}', [Client::class, 'show'])->middleware(['role:admin|employee|user'])->name('show'); 
+    Route::get('/{client}/edit', [Client::class, 'edit'])->middleware(['role:admin|employee'])->name('edit'); 
+    Route::put('/{client}', [Client::class, 'update'])->middleware(['role:admin|employee'])->name('update'); 
+    Route::get('/{client}/delete', [Client::class, 'delete'])->middleware(['role:admin|employee'])->name('delete');  
+    Route::delete('/{client}', [Client::class, 'destroy'])->middleware(['role:admin|employee'])->name('destroy');
 });
 
 Route::prefix('accounts')->name('accounts-')->group(function () {
-    Route::get('/transfer', [Account::class, 'transfer'])->name('transfer'); //rodysim sarasa
-    Route::get('/create', [Account::class, 'create'])->name('create'); //creato forma
-    Route::get('/{account}', [Account::class, 'show'])->name('show'); //konkretus mechanikas
-    Route::get('/{account}/edit', [Account::class, 'edit'])->name('edit'); // jo redagavimo forma
-    Route::get('/{account}/delete', [Account::class, 'delete'])->name('delete');  //deleto confirmacija
+    Route::get('/transfer', [Account::class, 'transfer'])->middleware(['role:admin|employee'])->name('transfer'); 
+    Route::get('/create', [Account::class, 'create'])->middleware(['role:admin|employee'])->name('create'); 
+    Route::get('/{account}', [Account::class, 'show'])->middleware(['role:admin|employee|user'])->name('show'); 
+    Route::get('/{account}/edit', [Account::class, 'edit'])->middleware(['role:admin|employee'])->name('edit'); 
+    Route::get('/{account}/delete', [Account::class, 'delete'])->middleware(['role:admin|employee'])->name('delete');  
 
 
     
-    Route::put('/transfer', [Account::class, 'transferUpdate'])->name('transferUp'); //redaguosim
-    Route::put('/{account}', [Account::class, 'update'])->name('update'); //redaguosim
-    Route::put('/', [Account::class, 'taxes'])->name('taxes'); //redaguosim
-
-    Route::post('/', [Account::class, 'store'])->name('store'); //uzsaugojimas
-
-    Route::delete('/{account}', [Account::class, 'destroy'])->name('destroy');
+    Route::put('/transfer', [Account::class, 'transferUpdate'])->middleware(['role:admin|employee'])->name('transferUp');
+    Route::put('/{account}', [Account::class, 'update'])->middleware(['role:admin|employee'])->name('update'); 
+    Route::put('/', [Account::class, 'taxes'])->middleware(['role:admin'])->name('taxes'); 
+    Route::post('/', [Account::class, 'store'])->middleware(['role:admin|employee'])->name('store'); 
+    Route::delete('/{account}', [Account::class, 'destroy'])->middleware(['role:admin|employee'])->name('destroy');
     
 });
 
