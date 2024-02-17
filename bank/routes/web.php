@@ -1,10 +1,9 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController as Account;
 use App\Http\Controllers\ClientController as Client;
-use App\Http\Controllers\ListingSearchController;
-use App\Models\ListingSearch;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -53,12 +52,6 @@ Route::prefix('accounts')->name('accounts-')->group(function () {
 
 
 
-
-Route::get('/bankas', function () {
-    return 'Cia nuguls bankas';
-});
-
-
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
