@@ -71,3 +71,4 @@
     </div>
 </div>
 @endsection
+@section('title', 'Login')
