@@ -12,4 +12,6 @@
         </div>
     </div>
     </div>
+
 @endsection
+@section('title', 'Future Bank')
