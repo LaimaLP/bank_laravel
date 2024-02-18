@@ -35,7 +35,8 @@ class HomeController extends Controller
 
         $accountsWithZeroBalance = Account::where('balance', 0)->count();
         $accountsWithNegativeBalanceCount = Account::where('balance', '<', 0)->count();
-
+        $topThreeClient = Account::orderBy('balance', 'desc')->take(3)->get();
+        // dd($topThreeClient);
         return view('home', [
             'accountsCount' => $accountsCount,
             'clientsCount' => $clientsCount,
@@ -44,6 +45,7 @@ class HomeController extends Controller
             'balanceAverage'=>$balanceAverage,
             'accountsWithZeroBalance'=> $accountsWithZeroBalance,
             'accountsWithNegativeBalanceCount'=> $accountsWithNegativeBalanceCount,
+            'topThreeClient'=> $topThreeClient,
         ]);
 
         

@@ -43,7 +43,7 @@
                                 <tr>
                                     <th scope="row">5</th>
                                     <td>The average balance in accounts is: </td>
-                                    <td>{{ number_format($balanceAverage, 2, '.', '')}} €</td>
+                                    <td>{{ number_format($balanceAverage, 2, '.', '') }} €</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">6</th>
@@ -59,6 +59,15 @@
                                 </tr>
                             </tbody>
                         </table>
+
+                        <div>
+                            <h4>Top 3 clients </h4>
+                            <p>
+                                @foreach ($topThreeClient as $topClient)
+                                    {{ $topClient->client->name }}  {{ $topClient->client->surname }}. Balance: {{ $topClient->balance }} €.  <br>
+                                @endforeach
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
