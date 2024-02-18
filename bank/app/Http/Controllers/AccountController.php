@@ -49,7 +49,6 @@ class AccountController extends Controller
     public function show(Account $account)
     {
 
-        // dd($account->client->name);
         return view(
             'accounts.show',
             [

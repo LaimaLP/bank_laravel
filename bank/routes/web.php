@@ -38,15 +38,11 @@ Route::prefix('accounts')->name('accounts-')->group(function () {
     Route::get('/{account}', [Account::class, 'show'])->middleware(['role:admin|employee|user'])->name('show'); 
     Route::get('/{account}/edit', [Account::class, 'edit'])->middleware(['role:admin|employee'])->name('edit'); 
     Route::get('/{account}/delete', [Account::class, 'delete'])->middleware(['role:admin|employee'])->name('delete');  
-
-
-    
     Route::put('/transfer', [Account::class, 'transferUpdate'])->middleware(['role:admin|employee'])->name('transferUp');
     Route::put('/{account}', [Account::class, 'update'])->middleware(['role:admin|employee'])->name('update'); 
     Route::put('/', [Account::class, 'taxes'])->middleware(['role:admin'])->name('taxes'); 
     Route::post('/', [Account::class, 'store'])->middleware(['role:admin|employee'])->name('store'); 
     Route::delete('/{account}', [Account::class, 'destroy'])->middleware(['role:admin|employee'])->name('destroy');
-    
 });
 
 
