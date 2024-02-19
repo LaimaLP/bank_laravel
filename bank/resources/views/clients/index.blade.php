@@ -84,6 +84,7 @@
                                     <th>Personal code</th>
                                     <th>Account Number</th>
                                     <th>Account Balance</th>
+                                    <th>Total Balance</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -93,7 +94,7 @@
                                     <tr>
                                         <td class="align-middle">{{ $client->name }}</td>
                                         <td class="align-middle">{{ $client->surname }}</td>
-                                        <td class="align-middle">{{ $client->personalNumber }}</td>
+                                        <td class="align-middle">{{ $client->personalNumber }} </td>
                                         <td>
                                             @if ($client->accounts()->count() > 0)
                                                 {{-- cia duoda kolekcija su visai truckais. o jei uzdesime (), pasiimam priklausomybe ir joje paskaiciuoti. Duomenu bazes uzklausos countas ...  --}}
@@ -114,10 +115,10 @@
                                         </td>
                                         <td>
                                             @if ($client->accounts()->count() > 0)
-                                                {{-- cia duoda kolekcija su visai truckais. o jei uzdesime (), pasiimam priklausomybe ir joje paskaiciuoti. Duomenu bazes uzklausos countas ...  --}}
                                                 <ul class="list-group list-group-flush">
                                                     @foreach ($client->accounts as $account)
-                                                        <li class="list-group-item"> {{ $account->balance }} € </li>
+                                                        <li class="list-group-item">
+                                                            {{ number_format($account->balance, 2, '.', ',') }} € </li>
                                                     @endforeach
                                                 </ul>
                                             @else
@@ -126,7 +127,15 @@
                                                 </ul>
                                             @endif
                                         </td>
-                                        <td>
+                                        @if ($client->accounts()->count() > 0)
+                                            <td class="align-middle">
+                                                {{ number_format($client->accounts()->sum('balance'), 2, '.', ',') }} €
+                                            </td>
+                                        @else
+                                            <td class="align-middle"> -
+                                            </td>
+                                        @endif
+                                        <td class="align-middle">
 
                                             @if ($role->show('admin'))
                                                 <a class="btn btn-success m-1" href={{ route('clients-edit', $client) }}
@@ -160,7 +169,8 @@
                                 @if ($sortBy == 'no_accounts')
                                     <span class="btn btn-light  mx-auto"> Count: {{ $noAccountsCount }} clients</span>
                                 @elseif($sortBy == 'zero_balance')
-                                    <span class="btn btn-light  mx-auto"> Count: {{ $zeroBalanceCount }} clients with zero balance</span>
+                                    <span class="btn btn-light  mx-auto"> Count: {{ $zeroBalanceCount }} clients with zero
+                                        balance</span>
                                 @endif
                             </div>
                         @endif

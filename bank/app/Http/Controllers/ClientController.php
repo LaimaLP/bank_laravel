@@ -28,7 +28,6 @@ class ClientController extends Controller
             $sortBy = "";
         }
 
-        // $sortBy = $request->query('sort', '');
         $perPageSelect = Client::getPerPageSelect();
         $perPage = (int)$request->query('per_page', 3);
         $s = $request->query('s', '');
@@ -91,7 +90,10 @@ class ClientController extends Controller
             $clients = $clients->get();
         };
 
-        // $noAccountsCount = $clients->whereDoesntHave('accounts')->count();
+
+
+
+
         return view(
             'clients.index',
             [

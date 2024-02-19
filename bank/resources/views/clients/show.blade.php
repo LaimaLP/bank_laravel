@@ -13,7 +13,7 @@
                                 <ul>
                                     <li> Has <b>{{ $client->accounts()->count() }}</b> active acounts.</li>
                                     <li> Total balance in <b>{{ $client->surname }}</b> accounts is
-                                        <b>{{ $client->accounts()->sum('balance') }}€</b>.
+                                        <b>{{ number_format($client->accounts()->sum('balance'), 2,'.',',') }}€</b>.
                                     </li>
                                 </ul>
 
@@ -21,11 +21,10 @@
                                     @foreach ($client->accounts as $account)
                                         <a class="list-group-item custom-account-list"
                                             href={{ route('accounts-show', $account) }}>{{ $account->accountNumber }} :
-                                            <b>{{ $account->balance }} € </b></a>
+                                            <b>{{ number_format($account->balance, 2, '.', ',') }} € </b></a>
                                     @endforeach
                                 </ul>
-                                <ul class="list-group-item">
-                                </ul>
+                              
                             </div>
                         @else
                             <div class="card-body">
