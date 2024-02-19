@@ -24,6 +24,7 @@
                             class="btn btn-success m-1">Add money</a>
                         <a href="{{ route('accounts-edit', ['account' => $account, 'action' => 'withdraw']) }}"
                             class="btn btn-primary m-1">Withdraw money</a>
+                            
                         <a href="{{ route('accounts-delete', $account) }}" class="btn btn-danger m-1"> <i
                             class="fa-solid fa-trash-can"></i></a>
                     </div>

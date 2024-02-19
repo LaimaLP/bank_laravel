@@ -151,7 +151,7 @@ class AccountController extends Controller
         } else if ($action === "withdraw") {
 
 
-            if ($account->balance > 0 && $account->balance > $amount) {
+            if ($account->balance > 0 && $account->balance >= $amount) {
                 $account->balance -= $amount;
             } elseif ($account->balance < 0) {
                 return redirect()->route('accounts-edit', ['account' => $account, 'action' => $action])->with('error', "Can't witdraw money from accounts with negative balance.");
