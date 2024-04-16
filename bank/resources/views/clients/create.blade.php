@@ -32,7 +32,6 @@
                                 <button type="submit" class="btn btn-primary">Add new client</button>
                             </div>
                             @csrf
-
                             {{-- jei sito neuzrasome forma siuncia i 419 --}}
                         </form>
                     </div>

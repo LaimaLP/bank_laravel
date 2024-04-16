@@ -21,6 +21,7 @@ class Client extends Model
         'name_desc' => 'Surname(Z-A)',
         'zero_balance'=>'Balance 0',
         'no_accounts'=>'No accounts',
+        'new_client'=>'By date (newest clients)'
     ];
 
     protected static $perPageSelect = [

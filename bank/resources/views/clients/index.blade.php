@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @inject('role', 'App\Services\RolesService')
 @inject('code', 'App\Services\PersonalNumberService')
-
 @section('content')
 
 
@@ -10,22 +9,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                {{-- <div class="col-md-7">
-                    <form action="{{route('clients-filter')}}">
-                        <div style="display: flex; flex-direction:row; gap:5px">
-                            <input type="text" name="search" class="form-control" placeholder="Search FutureBank..." />
-                            <div class="absolute top-2 right-2">
-                                <button type="submit" class="btn btn-secondary">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div> --}}
-
                 <div class="card mt-5 client-list">
                     <h3 class="card-header">All clients</h3>
-
 
                     <form action="{{ route('clients-index') }}">
                         <div class="container ">
@@ -37,7 +22,7 @@
                                             @foreach ($sorts as $sortKey => $sortValue)
                                                 <option value="{{ $sortKey }}"
                                                     @if ($sortBy == $sortKey) selected @endif>
-                                                    {{ $sortValue }}</option>
+                                                    {{ $sortValue }} </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -72,9 +57,6 @@
                         </div>
                     </form>
 
-
-
-
                     <div class="card-body p-4 ">
                         <table class="table ">
                             <thead>
@@ -90,14 +72,12 @@
                             </thead>
                             <tbody>
                                 @forelse ($clients as $client)
-                                    {{-- //forechinam kolekcija --}}
                                     <tr>
                                         <td class="align-middle">{{ $client->name }}</td>
                                         <td class="align-middle">{{ $client->surname }}</td>
                                         <td class="align-middle">{{ $client->personalNumber }} </td>
                                         <td>
                                             @if ($client->accounts()->count() > 0)
-                                                {{-- cia duoda kolekcija su visai truckais. o jei uzdesime (), pasiimam priklausomybe ir joje paskaiciuoti. Duomenu bazes uzklausos countas ...  --}}
                                                 <ul class="list-group list-group-flush custom-account-list">
                                                     @foreach ($client->accounts as $account)
                                                         <a style="text-decoration:none"
@@ -183,9 +163,6 @@
                         {{ $clients->links() }}
                     </div>
                 @endif
-
-
-
 
             </div>
         </div>

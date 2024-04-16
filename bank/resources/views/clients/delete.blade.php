@@ -10,9 +10,8 @@
                     <div class="card-body">
 
                         @if ($client->accounts()->count() > 0)
-                            <p> Client <b>{{ $client->name }} {{ $client->surname }}</b> has active accounts and can't be deleted.
-
-
+                            <p> Client <b>{{ $client->name }} {{ $client->surname }}</b> has active accounts and can't be
+                                deleted.
                             <ul class="list-group list-group-flush">
                                 @foreach ($client->accounts as $account)
                                     <li class="list-group-item list-group-flush custom-account-list"><a
@@ -20,18 +19,18 @@
                                             {{ $account->accountNumber }} and balance: {{ $account->balance }} €</a></li>
                                 @endforeach
                             </ul>
-
                         @endif
-
-                        <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1"> <i
-                            class="fa-solid fa-backward"></i> Go back</a>
-                        @if ($client->accounts()->count() == 0 || !($client->accounts->where('balance', '!=', 0)->count() > 0))
-                            <form action="{{ route('clients-destroy', $client) }}" method="post">
-                                <button type="submit" class="btn btn-danger m-1">Delete</button>
-                                @csrf
-                                @method('delete')
-                            </form>
-                        @endif
+                        <div class="d-flex justify-content-center">
+                            <a href="{{ route('clients-index') }}" class="btn btn-secondary m-1"> <i
+                                    class="fa-solid fa-backward"></i> Go back</a>
+                            @if ($client->accounts()->count() == 0 || !($client->accounts->where('balance', '!=', 0)->count() > 0))
+                                <form action="{{ route('clients-destroy', $client) }}" method="post">
+                                    <button type="submit" class="btn btn-danger m-1">Delete</button>
+                                    @csrf
+                                    @method('delete')
+                                </form>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>

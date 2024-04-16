@@ -22,7 +22,6 @@ class AccountController extends Controller
 
     public function create(Request $request)
     {
-        // dd($request);
         $accountNumber = "LT" . rand(10 ** 17, 10 ** 18 - 1);
         $clients = Client::all();
         $balance = 0;
@@ -39,8 +38,6 @@ class AccountController extends Controller
 
     public function store(StoreAccountRequest $request)
     {
-
-
         Account::create($request->all());
         return redirect()->route('clients-index')->with('ok', "Account succesfully created.");;
     }
@@ -86,7 +83,6 @@ class AccountController extends Controller
             'account_id_to' =>  $account_id_to,
             'confirmationNeeded' => $confirmationNeeded,
             'amount' => $amount,
-
         ]);
     }
 
@@ -146,7 +142,6 @@ class AccountController extends Controller
         $amount = (int)$request->input('amount');
         $action = $request->query('action');
 
-
         if ($amount < 0) {
             return redirect()->route('accounts-edit', ['account' => $account, 'action' => $action])->with('error', "Input must be positive integer.");
         } else if ($action === "add") {
@@ -163,12 +158,7 @@ class AccountController extends Controller
             }
         }
 
-
-
         $account->save();
-
-
-
 
         return redirect()->route('clients-index')->with('ok', "Operation completed successfully. Current {$account->client->name} balance {$account->balance}€.");
     }
@@ -190,7 +180,6 @@ class AccountController extends Controller
         if ($account->balance !== 0) {
             return redirect()->route('clients-index')->with('error', "Account can't be deleted. Client's balance {$account->balance} €");
         }
-
 
         $account->delete();
         return redirect()->route('clients-index');

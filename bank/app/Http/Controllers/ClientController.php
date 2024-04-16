@@ -35,15 +35,6 @@ class ClientController extends Controller
         $clients = Client::query();
 
 
-        // $clients = match ($sortBy) {
-        //     'name_asc' => $clients->orderBy('surname'),
-        //     'name_desc' => $clients->orderByDesc('surname'),
-        //     'zero_balance'=>$clients->whereHas('accounts', function ($query) {$query->where('balance', 0);})->get(),
-        //     default => $clients->orderBy('surname'),
-        // };
-
-
-
         switch ($sortBy) {
             case 'name_asc':
                 $clients = $clients->orderBy('surname');
@@ -60,6 +51,9 @@ class ClientController extends Controller
             case 'no_accounts':
                 $clients = $clients->whereDoesntHave('accounts');
                 $noAccountsCount = $clients->count();
+                break;
+            case 'new_client':
+                $clients = $clients->orderByDesc('created_at');
                 break;
             default:
                 $clients = $clients->orderBy('surname');
@@ -89,10 +83,6 @@ class ClientController extends Controller
         } else {
             $clients = $clients->get();
         };
-
-
-
-
 
         return view(
             'clients.index',
@@ -159,7 +149,7 @@ class ClientController extends Controller
         return redirect()->route('clients-index')->with('info', 'Client data edited');
     }
 
-    public function delete(Client $client) //cia po kapotu susiranda ta id, skart grazina ta mechaniko modeli kuri reikia
+    public function delete(Client $client)
     {
 
         return view(
@@ -170,12 +160,6 @@ class ClientController extends Controller
         );
     }
 
-
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Client $client)
     {
         $client->delete();

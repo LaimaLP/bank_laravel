@@ -47,8 +47,5 @@ class HomeController extends Controller
             'accountsWithNegativeBalanceCount'=> $accountsWithNegativeBalanceCount,
             'topThreeClient'=> $topThreeClient,
         ]);
-
-        
-      
     }
 }
