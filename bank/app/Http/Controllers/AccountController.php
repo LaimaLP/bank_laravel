@@ -126,17 +126,17 @@ class AccountController extends Controller
     {
 
         $clients = Client::all();
-    
-    foreach ($clients as $client) {
-        $accounts = $client->accounts()->get();
-        
-        if ($accounts->count() > 0) {
-            $accountToTax = $accounts->random();
-            
-            $accountToTax->balance -= 5;
-            $accountToTax->save();
+
+        foreach ($clients as $client) {
+            $accounts = $client->accounts()->get();
+
+            if ($accounts->count() > 0) {
+                $accountToTax = $accounts->random();
+
+                $accountToTax->balance -= 5;
+                $accountToTax->save();
+            }
         }
-    }
         return redirect()->route('clients-index')->with('info', "Taxes succesfully deducted from all clients.");
     }
 
@@ -146,17 +146,20 @@ class AccountController extends Controller
         $amount = (int)$request->input('amount');
         $action = $request->query('action');
 
-        if ($action === "add") {
-            $account->balance += $amount;
+
+        if ($amount < 0) {
+            return redirect()->route('accounts-edit', ['account' => $account, 'action' => $action])->with('error', "Input must be positive integer.");
+        } else if ($action === "add") {
+            $account->balance += $amount;      
         } else if ($action === "withdraw") {
-
-
             if ($account->balance > 0 && $account->balance >= $amount) {
                 $account->balance -= $amount;
             } elseif ($account->balance < 0) {
                 return redirect()->route('accounts-edit', ['account' => $account, 'action' => $action])->with('error', "Can't witdraw money from accounts with negative balance.");
             } elseif ($account->balance < $amount) {
                 return redirect()->route('accounts-edit', ['account' => $account, 'action' => $action])->with('error', "Can't witdraw money. Max amount $account->balance .");
+            } elseif ($amount < 0) {
+                return redirect()->route('accounts-edit', ['account' => $account, 'action' => $action])->with('error', "Input must be positive integer.");
             }
         }
 
