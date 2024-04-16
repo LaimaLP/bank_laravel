@@ -17,7 +17,7 @@ class Account extends Model
 
     public function client()
     {
-        return $this->belongsTo(Client::class); //nurodom kad butent sis mechanikas
+        return $this->belongsTo(Client::class);
     }
 
 }
